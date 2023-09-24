@@ -5,9 +5,9 @@ import { AppComponent } from './app.component';
 
 import { AppHeader } from './appHeader/appHeader.component';
 
-import { ReceipeDetail } from './receipes/receipeDetail/receipeDetail.component';
-import { ReceipeItem } from './receipes/receipeItem/receipeItem.component';
-import { ReceipeList } from './receipes/receipeList/receipeList.component';
+import { ReceipeDetail } from './recipes/recipeDetail/recipeDetail.component';
+import { ReceipeItem } from './recipes/recipeItem/recipeItem.component';
+import { ReceipeList } from './recipes/recipeList/recipeList.component';
 
 import { ShoppingList } from './shopping/shoppingList/shoppingList.component';
 import { ShoppingListEdit } from './shopping/shoppingListEdit/shoppingListEdit.component';
