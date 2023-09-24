@@ -5,9 +5,9 @@ import { AppComponent } from './app.component';
 
 import { AppHeader } from './appHeader/appHeader.component';
 
-import { ReceipeDetail } from './recipes/recipeDetail/recipeDetail.component';
-import { ReceipeItem } from './recipes/recipeItem/recipeItem.component';
-import { ReceipeList } from './recipes/recipeList/recipeList.component';
+import { RecipeDetail } from './recipes/recipeDetail/recipeDetail.component';
+import { RecipeItem } from './recipes/recipeItem/recipeItem.component';
+import { RecipeList } from './recipes/recipeList/recipeList.component';
 
 import { ShoppingList } from './shopping/shoppingList/shoppingList.component';
 import { ShoppingListEdit } from './shopping/shoppingListEdit/shoppingListEdit.component';
@@ -16,9 +16,9 @@ import { ShoppingListEdit } from './shopping/shoppingListEdit/shoppingListEdit.c
   declarations: [
     AppComponent,
     AppHeader,
-    ReceipeDetail,
-    ReceipeItem,
-    ReceipeList,
+    RecipeDetail,
+    RecipeItem,
+    RecipeList,
     ShoppingList,
     ShoppingListEdit,
   ],
