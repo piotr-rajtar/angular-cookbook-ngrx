@@ -1,8 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+
+import { Recipe } from '../models';
 
 @Component({
   selector: 'recipe-item',
   templateUrl: './recipeItem.component.html',
   styleUrls: ['./recipeItem.component.scss']
 })
-export class RecipeItem {}
+export class RecipeItem {
+  @Input({ required: true }) recipe!: Recipe;
+}
