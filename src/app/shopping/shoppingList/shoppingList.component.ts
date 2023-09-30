@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { Ingredient } from '../models';
 
@@ -8,14 +8,5 @@ import { Ingredient } from '../models';
   styleUrls: ['./shoppingList.component.scss']
 })
 export class ShoppingList {
-  ingredients: Ingredient[] = [
-    {
-      name: 'Apples',
-      amount: 5,
-    },
-    {
-      name: 'Tomatoes',
-      amount: 10,
-    },
-  ];
+  @Input({ required: true }) ingredients!: Ingredient[];
 }

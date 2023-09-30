@@ -1,7 +1,10 @@
 <div class="row">
   <div class="col-10">
-    <shopping-list-edit />
+    <shopping-list-edit (ingredientAddition)="addIngredient($event)" />
     <hr />
-    <shopping-list />
+    <shopping-list *ngIf="ingredients.length; else infoText" [ingredients]="ingredients" />
+    <ng-template #infoText>
+      <p>No ingredients on the list</p>
+    </ng-template>
   </div>
 </div>
