@@ -1,4 +1,8 @@
-<a href="#" class="list-group-item list-group-item-secondary list-group-item-action d-flex justify-content-between align-items-start">
+<a
+  href="#"
+  class="list-group-item list-group-item-secondary list-group-item-action d-flex justify-content-between align-items-start"
+  (click)="onRecipeClick()"
+>
   <div>
     <h5 class="mb-1">{{ recipe.name }}</h5>
     <p>{{ recipe.description }}</p>

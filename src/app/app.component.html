@@ -1,9 +1,9 @@
-<app-header />
+<app-header (navigate)="onNavigationClick($event)" />
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <recipe-container />
-      <shopping-container />
+      <recipe-container *ngIf="activeNavigationItem === NavigationItem.RECIPES" />
+      <shopping-container *ngIf="activeNavigationItem === NavigationItem.SHOPPING_LIST" />
     </div>
   </div>
 </div>

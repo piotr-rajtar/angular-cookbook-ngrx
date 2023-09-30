@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { Recipe } from '../models';
 
@@ -8,16 +8,11 @@ import { Recipe } from '../models';
   styleUrls: ['./recipeList.component.scss']
 })
 export class RecipeList {
-  recipes: Recipe[] = [
-    {
-      name: 'Test recipe name',
-      description: 'Test recipe description',
-      imagePath: 'https://cdn.pixabay.com/photo/2020/06/15/18/21/croissants-5302909_1280.jpg',
-    },
-    {
-      name: 'Test recipe name',
-      description: 'Test recipe description',
-      imagePath: 'https://cdn.pixabay.com/photo/2020/06/15/18/21/croissants-5302909_1280.jpg',
-    },
-  ];
+  @Input({ required: true }) recipes!: Recipe[];
+
+  @Output() recipeSelect = new EventEmitter<Recipe>();
+
+  onRecipeClick(selectedRecipe: Recipe) {
+    this.recipeSelect.emit(selectedRecipe);
+  }
 }
