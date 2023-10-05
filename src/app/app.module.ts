@@ -15,8 +15,12 @@ import { ShoppingContainer } from './shopping/shoppingContainer/shoppingContaine
 import { ShoppingList } from './shopping/shoppingList/shoppingList.component';
 import { ShoppingListEdit } from './shopping/shoppingListEdit/shoppingListEdit.component';
 
+import { ClickOutsideDirective } from './directives/clickOutside.directive';
+import { DropdownDirective } from './directives/dropdown.directive';
+
 @NgModule({
   declarations: [
+    //COMPONENTS
     AppComponent,
     AppHeader,
     RecipeContainer,
@@ -26,6 +30,9 @@ import { ShoppingListEdit } from './shopping/shoppingListEdit/shoppingListEdit.c
     ShoppingContainer,
     ShoppingList,
     ShoppingListEdit,
+    //DIRECTIVES
+    ClickOutsideDirective,
+    DropdownDirective,
   ],
   imports: [
     BrowserModule,
