@@ -9,4 +9,14 @@ import { Recipe } from '../models';
 })
 export class RecipeDetail {
   @Input({ required: true }) recipe!: Recipe;
+
+  isDropdownOpen = false;
+
+  closeDropdown(): void {
+    this.isDropdownOpen = false;
+  }
+
+  toggleDropdown(): void {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
 }
