@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { Ingredient } from '../models/index';
+import { ShoppingService } from '../services/shopping.service';
 
 @Component({
   selector: 'shopping-list-edit',
@@ -8,20 +9,21 @@ import { Ingredient } from '../models/index';
   styleUrls: ['./shoppingListEdit.component.scss']
 })
 export class ShoppingListEdit {
-  @Output() ingredientAddition = new EventEmitter<Ingredient>();
-
   ingredientName: string = '';
   ingredientAmount: number | null = null;
+
+  constructor(private shoppingService: ShoppingService) {}
 
   get isAddButtonDisabled(): boolean {
     return !this.ingredientName || !this.ingredientAmount;
   }
 
   addIngredient(): void {
-    this.ingredientAddition.emit({
+    const ingredient: Ingredient = {
       name: this.ingredientName,
       amount: this.ingredientAmount as number,
-    })
+    };
+    this.shoppingService.addIngredient(ingredient);
 
     this.clearIngredient();
   }
