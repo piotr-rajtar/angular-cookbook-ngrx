@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 import { Recipe } from '../models';
+import { RecipeService } from '../services/recipe.service';
 
 @Component({
   selector: 'recipe-detail',
@@ -10,6 +11,8 @@ import { Recipe } from '../models';
 export class RecipeDetail {
   @Input({ required: true }) recipe!: Recipe;
 
+  constructor(private recipeService: RecipeService) {}
+
   isDropdownOpen = false;
 
   closeDropdown(): void {
@@ -18,5 +21,10 @@ export class RecipeDetail {
 
   toggleDropdown(): void {
     this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
+  addToShoppingList(): void {
+    this.recipeService.addIngredientsToShoppingList(this.recipe.ingredients);
+    this.closeDropdown();
   }
 }
