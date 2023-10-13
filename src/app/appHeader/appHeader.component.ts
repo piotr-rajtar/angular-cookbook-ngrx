@@ -1,6 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-
-import { NavigationItem } from './appHeader.model';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -8,10 +6,6 @@ import { NavigationItem } from './appHeader.model';
   styleUrls: ['./appHeader.component.scss'],
 })
 export class AppHeader {
-  @Output() navigate = new EventEmitter<NavigationItem>();
-
-  NavigationItem = NavigationItem;
-
   isMenuDropdownOpen = false;
 
   closeMenuDropdown(): void {
@@ -30,9 +24,5 @@ export class AppHeader {
 
   toggleDropdown(): void {
     this.isOptionDropdownOpen = !this.isOptionDropdownOpen;
-  }
-
-  onNavigationLinkClick(navigationItem: NavigationItem): void {
-    this.navigate.emit(navigationItem);
   }
 }

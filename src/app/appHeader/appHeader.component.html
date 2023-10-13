@@ -3,7 +3,7 @@
   data-bs-theme="dark"
 >
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Recipe Book</a>
+    <a class="navbar-brand" href="/">Recipe Book</a>
     <button
       [appDropdown]="isMenuDropdownOpen"
       aria-controls="navbarSupportedContent"
@@ -23,25 +23,22 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
           <a
-            aria-current="page"
+            ariaCurrentWhenActive="page"
             class="nav-link"
-            href="#"
-            (click)="[
-              onNavigationLinkClick(NavigationItem.RECIPES),
-              closeMenuDropdown(),
-            ]"
+            routerLink="/recipes"
+            routerLinkActive="active"
+            (click)="closeMenuDropdown()"
           >
             Recipes
           </a>
         </li>
         <li class="nav-item">
           <a
+            ariaCurrentWhenActive="page"
             class="nav-link"
-            href="#"
-            (click)="[
-              onNavigationLinkClick(NavigationItem.SHOPPING_LIST),
-              closeMenuDropdown()
-            ]"
+            routerLink="/shopping-list"
+            routerLinkActive="active"
+            (click)="closeMenuDropdown()"
           >
             Shopping List
           </a>
@@ -51,7 +48,6 @@
             [appDropdown]="isOptionDropdownOpen"
             [ariaExpanded]="isOptionDropdownOpen"
             class="nav-link dropdown-toggle"
-            href="#"
             role="button"
             (click)="toggleDropdown()"
             (clickOutside)="closeOptionDropdown()"
@@ -64,8 +60,7 @@
           >
             <li>
               <a
-                class="dropdown-item"
-                href="#"
+                class="dropdown-item dropdown-option"
                 (click)="[closeOptionDropdown(), closeMenuDropdown()]"
               >
                 Save data
@@ -73,8 +68,7 @@
             </li>
             <li>
               <a
-                class="dropdown-item"
-                href="#"
+                class="dropdown-item dropdown-option"
                 (click)="[closeOptionDropdown(), closeMenuDropdown()]"
               >
                 Fetch data

@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
+import { AppRoutingModule } from './router/app-routing.module';
+
 import { AppComponent } from './app.component';
 
 import { AppHeader } from './appHeader/appHeader.component';
@@ -35,6 +37,7 @@ import { DropdownDirective } from './directives/dropdown.directive';
     DropdownDirective,
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     FormsModule,
   ],
