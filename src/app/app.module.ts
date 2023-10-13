@@ -13,7 +13,7 @@ import { RecipeDetail } from './recipes/recipeDetail/recipeDetail.component';
 import { RecipeItem } from './recipes/recipeItem/recipeItem.component';
 import { RecipeList } from './recipes/recipeList/recipeList.component';
 
-import { ShoppingContainer } from './shopping/shoppingContainer/shoppingContainer.component';
+import { ShoppingListContainer } from './shopping/shoppingListContainer/shoppingListContainer.component';
 import { ShoppingList } from './shopping/shoppingList/shoppingList.component';
 import { ShoppingListEdit } from './shopping/shoppingListEdit/shoppingListEdit.component';
 
@@ -29,7 +29,7 @@ import { DropdownDirective } from './directives/dropdown.directive';
     RecipeDetail,
     RecipeItem,
     RecipeList,
-    ShoppingContainer,
+    ShoppingListContainer,
     ShoppingList,
     ShoppingListEdit,
     //DIRECTIVES

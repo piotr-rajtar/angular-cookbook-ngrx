@@ -5,10 +5,10 @@ import { ShoppingService } from '../services/shopping.service';
 
 @Component({
   selector: 'shopping-container',
-  templateUrl: './shoppingContainer.component.html',
-  styleUrls: ['./shoppingContainer.component.scss']
+  templateUrl: './shoppingListContainer.component.html',
+  styleUrls: ['./shoppingListContainer.component.scss']
 })
-export class ShoppingContainer implements OnInit {
+export class ShoppingListContainer implements OnInit {
   ingredients: Ingredient[] = [];
 
   constructor(private shoppingService: ShoppingService) {
