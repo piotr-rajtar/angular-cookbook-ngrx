@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Recipe } from '../models';
 
@@ -9,4 +10,13 @@ import { Recipe } from '../models';
 })
 export class RecipeList {
   @Input({ required: true }) recipes!: Recipe[];
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+  ) {}
+
+  onAddClick(): void {
+    this.router.navigate(['add'], { relativeTo: this.route });
+  }
 }

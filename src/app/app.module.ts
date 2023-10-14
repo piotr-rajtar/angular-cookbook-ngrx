@@ -10,8 +10,10 @@ import { AppHeader } from './appHeader/appHeader.component';
 
 import { RecipeContainer } from './recipes/recipeContainer/recipeContainer.component';
 import { RecipeDetail } from './recipes/recipeDetail/recipeDetail.component';
+import { RecipeEditComponent } from './recipes/recipeEdit/recipeEdit.component';
 import { RecipeItem } from './recipes/recipeItem/recipeItem.component';
 import { RecipeList } from './recipes/recipeList/recipeList.component';
+import { RecipeNoSelectionComponent } from './recipes/recipeNoSelection/recipeNoSelection.component';
 
 import { ShoppingListContainer } from './shopping/shoppingListContainer/shoppingListContainer.component';
 import { ShoppingList } from './shopping/shoppingList/shoppingList.component';
@@ -27,8 +29,10 @@ import { DropdownDirective } from './directives/dropdown.directive';
     AppHeader,
     RecipeContainer,
     RecipeDetail,
+    RecipeEditComponent,
     RecipeItem,
     RecipeList,
+    RecipeNoSelectionComponent,
     ShoppingListContainer,
     ShoppingList,
     ShoppingListEdit,

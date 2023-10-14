@@ -1,80 +1,86 @@
-<div class="row">
-  <div class="col-12">
-    <img
-      [alt]="recipe.name"
-      [class]="['img-fluid', 'image']"
-      [src]="recipe.imagePath"
-    />
+<div *ngIf="recipe; else noRecipe">
+  <div class="row">
+    <div class="col-12">
+      <img
+        [alt]="recipe.name"
+        [class]="['img-fluid', 'image']"
+        [src]="recipe.imagePath"
+      />
+    </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-12">
-    <h1>{{ recipe.name }}</h1>
+  <div class="row">
+    <div class="col-12">
+      <h1>{{ recipe.name }}</h1>
+    </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-12">
-    <div class="btn-group" role="group">
-      <button
-        [appDropdown]="isDropdownOpen"
-        [ariaExpanded]="isDropdownOpen"
-        class="btn btn-primary dropdown-toggle"
-        type="button"
-        (click)="toggleDropdown()"
-        (clickOutside)="closeDropdown()"
-      >
-        Manage Recipe
-      </button>
-      <ul
-        [appDropdown]="isDropdownOpen"
-        [class]="{
-          'dropdown-menu': true,
-          openDropdown: isDropdownOpen,
-        }"
-      >
-        <li>
-          <a
-            class="dropdown-item recipe-dropdown-item"
-            (click)="addToShoppingList()"
-          >
-            Add to shopping list
-          </a>
-        </li>
-        <li>
-          <a
-            class="dropdown-item recipe-dropdown-item"
-            (click)="closeDropdown()"
-          >
-            Edit Recipe
-          </a>
-        </li>
-        <li>
-          <a
-            class="dropdown-item recipe-dropdown-item"
-            (click)="closeDropdown()"
-          >
-            Add Recipe
-          </a>
+  <div class="row">
+    <div class="col-12">
+      <div class="btn-group" role="group">
+        <button
+          [appDropdown]="isDropdownOpen"
+          [ariaExpanded]="isDropdownOpen"
+          class="btn btn-primary dropdown-toggle"
+          type="button"
+          (click)="toggleDropdown()"
+          (clickOutside)="closeDropdown()"
+        >
+          Manage Recipe
+        </button>
+        <ul
+          [appDropdown]="isDropdownOpen"
+          [class]="{
+            'dropdown-menu': true,
+            openDropdown: isDropdownOpen,
+          }"
+        >
+          <li>
+            <a
+              class="dropdown-item recipe-dropdown-item"
+              (click)="addToShoppingList()"
+            >
+              Add to shopping list
+            </a>
+          </li>
+          <li>
+            <a
+              class="dropdown-item recipe-dropdown-item"
+              (click)="[onEditClick(), closeDropdown()]"
+            >
+              Edit Recipe
+            </a>
+          </li>
+          <li>
+            <a
+              class="dropdown-item recipe-dropdown-item"
+              (click)="closeDropdown()"
+            >
+              Delete Recipe
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      {{ recipe.description }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <h4 class="my-3">Ingredients list:</h4>
+      <ul class="list-group">
+        <li
+          *ngFor="let ingredient of recipe.ingredients"
+          class="list-group-item"
+        >
+          {{ ingredient.name }} ({{ ingredient.amount }})
         </li>
       </ul>
     </div>
   </div>
 </div>
-<div class="row">
-  <div class="col-12">
-    {{ recipe.description }}
-  </div>
-</div>
-<div class="row">
-  <div class="col-12">
-    <h4 class="my-3">Ingredients list:</h4>
-    <ul class="list-group">
-      <li
-        *ngFor="let ingredient of recipe.ingredients"
-        class="list-group-item"
-      >
-        {{ ingredient.name }} ({{ ingredient.amount }})
-      </li>
-    </ul>
-  </div>
-</div>
+<ng-template #noRecipe>
+  <p>No recipe with given ID</p>
+</ng-template>
+

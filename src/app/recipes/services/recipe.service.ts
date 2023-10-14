@@ -1,4 +1,4 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 import { Ingredient } from '../../shopping/models';
 import { ShoppingService } from '../../shopping/services/shopping.service';
@@ -11,6 +11,7 @@ import { Recipe } from '../models/index';
 export class RecipeService {
   private recipes: Recipe[] = [
     {
+      id: '0',
       name: 'Test recipe name1',
       description: 'Test recipe description1',
       imagePath: 'https://cdn.pixabay.com/photo/2020/06/15/18/21/croissants-5302909_1280.jpg',
@@ -26,6 +27,7 @@ export class RecipeService {
       ],
     },
     {
+      id: '1',
       name: 'Test recipe name2',
       description: 'Test recipe description2',
       imagePath: 'https://cdn.pixabay.com/photo/2020/06/15/18/21/croissants-5302909_1280.jpg',
@@ -44,10 +46,12 @@ export class RecipeService {
 
   constructor(private shoppingService: ShoppingService){}
 
-  selectRecipe = new EventEmitter<Recipe>();
-
   getRecipes(): Recipe[] {
     return structuredClone(this.recipes);
+  }
+
+  getRecipe(id: string): Recipe | undefined {
+    return this.recipes.find(recipe => recipe.id === id);
   }
 
   addIngredientsToShoppingList(ingredients: Ingredient[]) {
