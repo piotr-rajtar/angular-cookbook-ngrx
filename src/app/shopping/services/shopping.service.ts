@@ -1,4 +1,5 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 import { Ingredient } from '../models';
 
@@ -8,7 +9,7 @@ import { Ingredient } from '../models';
 export class ShoppingService {
   private ingredients: Ingredient[] = [];
 
-  updateShoppingList = new EventEmitter();
+  updateShoppingList = new Subject<void>();
 
   getIngredients(): Ingredient[] {
     return structuredClone(this.ingredients);
@@ -16,11 +17,11 @@ export class ShoppingService {
 
   addIngredient(ingredient: Ingredient): void {
     this.ingredients.push(ingredient);
-    this.updateShoppingList.emit();
+    this.updateShoppingList.next();
   }
 
   addIngredientList(ingredients: Ingredient[]): void {
     this.ingredients.push(...ingredients);
-    this.updateShoppingList.emit();
+    this.updateShoppingList.next();
   }
 }
