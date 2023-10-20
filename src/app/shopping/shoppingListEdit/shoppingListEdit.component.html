@@ -1,26 +1,45 @@
 <div class="row">
   <div class="col-12">
-    <form>
+    <form (ngSubmit)="onSubmit(shoppingListForm)" #shoppingListForm="ngForm">
       <div class="row">
         <div class="col-sm-5">
           <label for="ingredientInputId" class="form-label">Name</label>
           <input
-            [(ngModel)]="ingredientName"
-            type="text"
-            class="form-control"
             id="ingredientInputId"
+            class="form-control"
+            form
             name="ingredientName"
+            [(ngModel)]="ingredientName"
+            required
+            type="text"
+            #ingredientNameField="ngModel"
           >
+          <p
+            *ngIf="!ingredientNameField.valid && ingredientNameField.touched"
+            class="error"
+          >
+            Field is required!
+          </p>
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-3">
           <label for="ingredientAmountId" class="form-label">Amount</label>
           <input
-            [(ngModel)]="ingredientAmount"
-            type="number"
-            class="form-control"
             id="ingredientAmountId"
+            class="form-control"
+            min="1"
+            max="100"
             name="ingredientAmount"
+            [(ngModel)]="ingredientAmount"
+            required
+            type="number"
+            #ingredientAmountField="ngModel"
           >
+          <p
+            *ngIf="!ingredientAmountField.valid && ingredientAmountField.touched"
+            class="error"
+          >
+            {{ getIngredientAmountErrorMessage(ingredientAmountField) }}
+          </p>
         </div>
       </div>
       <div class="row mt-3">
@@ -28,16 +47,16 @@
           <button
             type="submit"
             class="btn btn-success me-3"
-            [disabled]="isAddButtonDisabled"
-            (click)="addIngredient()"
+            [disabled]="!shoppingListForm.valid"
           >
-            Add
+            {{ addButtonTitle }}
           </button>
 
           <button
             type="button"
             class="btn btn-danger me-3"
-            (click)="deleteIngredient()"
+            [disabled]="!isInEditMode"
+            (click)="deleteIngredient(shoppingListForm)"
           >
             Delete
           </button>
@@ -45,7 +64,7 @@
           <button
             type="button"
             class="btn btn-primary"
-            (click)="clearIngredient()"
+            (click)="clearIngredient(shoppingListForm)"
           >
             Clear
           </button>

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Ingredient } from '../../shopping/models';
+import { Ingredient } from '../../shopping/models/ingredient';
 import { ShoppingService } from '../../shopping/services/shopping.service';
 
 import { Recipe } from '../models/index';
@@ -17,10 +17,12 @@ export class RecipeService {
       imagePath: 'https://cdn.pixabay.com/photo/2020/06/15/18/21/croissants-5302909_1280.jpg',
       ingredients: [
         {
+          id: 1,
           name: 'butter',
           amount: 1,
         },
         {
+          id: 2,
           name: 'flour',
           amount: 2,
         }
@@ -33,10 +35,12 @@ export class RecipeService {
       imagePath: 'https://cdn.pixabay.com/photo/2020/06/15/18/21/croissants-5302909_1280.jpg',
       ingredients: [
         {
+          id: 3,
           name: 'butter',
           amount: 2,
         },
         {
+          id: 4,
           name: 'oil',
           amount: 1,
         }

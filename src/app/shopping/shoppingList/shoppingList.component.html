@@ -1,9 +1,9 @@
 <div class="list-group">
   <button
     *ngFor="let ingredient of ingredients"
-    aria-current="true"
     class="list-group-item list-group-item-action"
     type="button"
+    (click)="onIngredientClick(ingredient.id)"
   >
     {{ ingredient.name }} ({{ ingredient.amount }})
   </button>
