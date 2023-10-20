@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
-import { Recipe } from '../models';
+import { Recipe } from '../models/recipe';
 import { RecipeService } from '../services/recipe.service';
 
 @Component({
@@ -39,7 +39,13 @@ export class RecipeDetail implements OnInit {
     this.closeDropdown();
   }
 
-  onEditClick() {
+  editRecipe() {
     this.router.navigate(['edit'], { relativeTo: this.route });
+  }
+
+  deleteRecipe(): void {
+    this.recipeService.deleteRecipe(this.recipe?.id as string);
+
+    this.router.navigate(['/recipes']);
   }
 }

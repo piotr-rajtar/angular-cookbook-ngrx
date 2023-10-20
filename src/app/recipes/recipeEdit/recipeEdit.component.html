@@ -1,1 +1,165 @@
-<p>EditMode: {{ editMode }}</p>
+<div class="row">
+  <div class="col-12">
+    <form
+      [formGroup]="recipeForm"
+      (ngSubmit)="[onSubmit(), goBack()]"
+    >
+      <div class="row mb-4">
+        <div class="col-12">
+          <button
+            class="btn btn-success me-3"
+            [disabled]="!recipeForm.valid"
+            type="submit"
+          >
+            Save
+          </button>
+          <button
+            class="btn btn-danger"
+            type="button"
+            (click)="goBack()"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input
+              id="name"
+              class="form-control"
+              formControlName="recipeName"
+              required
+              type="text"
+            />
+            <p
+              *ngIf="hasRecipeNameFieldError"
+              class="error"
+            >
+              Field is required!
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <div class="mb-3">
+            <label for="image" class="form-label">Image URL</label>
+            <input
+              id="image"
+              class="form-control"
+              formControlName="recipeImageUrl"
+              type="text"
+            />
+            <p
+              *ngIf="hasRecipeImageUrlFieldError"
+              class="error"
+            >
+              Field is required!
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <img [src]="imageUrl" class="img-fluid image" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea
+              id="description"
+              class="form-control"
+              formControlName="recipeDescription"
+              required
+              rows="6"
+              type="text"
+            ></textarea>
+            <p
+              *ngIf="hasRecipeDescriptionFieldError"
+              class="error"
+            >
+              Field is required!
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" formArrayName="ingredients">
+        <h4 class="subheader">Ingredients</h4>
+        <div class="col-12">
+          <div
+            *ngFor="let ingredientControls of ingredientsControls; let index = index"
+            [formGroupName]="index"
+            class="row"
+          >
+            <div class="col-6">
+              <div class="mb-3">
+                <label for="ingredientName-{{ index }}" class="form-label">Ingredient name</label>
+                <input
+                  id="ingredientName-{{ index }}"
+                  class="form-control"
+                  formControlName="ingredientName"
+                  type="text"
+                />
+                <p
+                  *ngIf="hasIngredientNameError(index)"
+                  class="error"
+                >
+                  Field is required!
+                </p>
+              </div>
+            </div>
+            <div class="col-5">
+              <div class="mb-3">
+                <label for="ingredientAmount-{{ index }}" class="form-label">Amount</label>
+                <input
+                  id="ingredientAmount-{{ index }}"
+                  class="form-control"
+                  formControlName="ingredientAmount"
+                  type="number"
+                />
+                <p
+                  *ngIf="hasIngredientAmountError(index)"
+                  class="error"
+                >
+                  {{ getIngredientAmountErrorMessage(index) }}
+                </p>
+              </div>
+            </div>
+            <div class="col-1">
+              <button
+                class="btn btn-danger layout-margin"
+                type="button"
+                (click)="removeIngredient(index)"
+              >
+                X
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <hr />
+
+        <div class="row">
+          <div class="col-12">
+            <button
+              class="btn btn-success mb-5"
+              type="button"
+              (click)="addIngredient()"
+            >
+              + Add ingredient
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

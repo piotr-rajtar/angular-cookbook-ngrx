@@ -44,7 +44,7 @@
           <li>
             <a
               class="dropdown-item recipe-dropdown-item"
-              (click)="[onEditClick(), closeDropdown()]"
+              (click)="[editRecipe(), closeDropdown()]"
             >
               Edit Recipe
             </a>
@@ -52,7 +52,7 @@
           <li>
             <a
               class="dropdown-item recipe-dropdown-item"
-              (click)="closeDropdown()"
+              (click)="[deleteRecipe(), closeDropdown()]"
             >
               Delete Recipe
             </a>
@@ -66,7 +66,7 @@
       {{ recipe.description }}
     </div>
   </div>
-  <div class="row">
+  <div *ngIf="recipe.ingredients.length" class="row">
     <div class="col-12">
       <h4 class="my-3">Ingredients list:</h4>
       <ul class="list-group">
