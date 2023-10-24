@@ -1,0 +1,79 @@
+<div class="row">
+  <div class="col-12 col-md-6 offset-md-3">
+    <div
+      *ngIf="error"
+      class="alert alert-danger"
+      role="alert"
+    >
+      {{ error }}
+    </div>
+    <form
+      *ngIf="!isLoading; else spinner"
+      #authForm="ngForm"
+      (ngSubmit)="onSubmit(authForm)"
+    >
+      <div class="mb-3">
+        <label for="email" class="form-label">Email address</label>
+        <input
+          id="email"
+          autocomplete="username"
+          class="form-control"
+          email
+          name="email"
+          ngModel
+          required
+          type="email"
+          #emailField="ngModel"
+        />
+        <p
+          *ngIf="!emailField.valid && emailField.touched"
+          class="error mt-1"
+        >
+          {{ getEmailError(emailField) }}
+        </p>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input
+          id="password"
+          autocomplete="current-password"
+          class="form-control"
+          minlength="6"
+          name="password"
+          ngModel
+          required
+          type="password"
+          #passwordField="ngModel"
+        />
+        <p
+          *ngIf="!passwordField.valid && passwordField.touched"
+          class="error mt-1"
+        >
+          {{ getPasswordError(passwordField) }}
+        </p>
+      </div>
+      <button
+        class="btn btn-primary me-3"
+        [disabled]="!authForm.valid"
+        type="submit"
+      >
+        {{ authButtonTitle }}
+      </button>
+      <button
+        class="btn btn-primary"
+        type="button"
+        (click)="switchAuthenticationMode()"
+      >
+        {{ switchButtonTitle }}
+      </button>
+    </form>
+
+    <ng-template #spinner>
+      <div class="d-flex justify-content-center">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>

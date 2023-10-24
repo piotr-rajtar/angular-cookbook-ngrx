@@ -9,6 +9,8 @@ import { recipeResolver } from '../recipes/resolvers/recipe.resolver';
 
 import { ShoppingListContainer } from '../shopping/shoppingListContainer/shoppingListContainer.component';
 
+import { AuthComponent } from '../auth/auth.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -53,6 +55,10 @@ const routes: Routes = [
   {
     path: 'shopping-list',
     component: ShoppingListContainer,
+  },
+  {
+    path: 'auth',
+    component: AuthComponent,
   }
 ];
 

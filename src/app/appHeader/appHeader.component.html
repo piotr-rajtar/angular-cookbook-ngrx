@@ -36,6 +36,17 @@
           <a
             ariaCurrentWhenActive="page"
             class="nav-link"
+            routerLink="/auth"
+            routerLinkActive="active"
+            (click)="closeMenuDropdown()"
+          >
+            Authenticate
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            ariaCurrentWhenActive="page"
+            class="nav-link"
             routerLink="/shopping-list"
             routerLinkActive="active"
             (click)="closeMenuDropdown()"

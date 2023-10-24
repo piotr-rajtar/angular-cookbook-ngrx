@@ -8,6 +8,7 @@ import { AppRoutingModule } from './router/app-routing.module';
 import { AppComponent } from './app.component';
 
 import { AppHeader } from './appHeader/appHeader.component';
+import { AuthComponent } from './auth/auth.component';
 
 import { RecipeContainer } from './recipes/recipeContainer/recipeContainer.component';
 import { RecipeDetail } from './recipes/recipeDetail/recipeDetail.component';
@@ -28,6 +29,7 @@ import { DropdownDirective } from './directives/dropdown.directive';
     //COMPONENTS
     AppComponent,
     AppHeader,
+    AuthComponent,
     RecipeContainer,
     RecipeDetail,
     RecipeEditComponent,
