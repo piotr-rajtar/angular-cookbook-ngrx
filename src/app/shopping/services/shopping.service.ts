@@ -9,10 +9,10 @@ import { Ingredient } from '../models/ingredient';
 export class ShoppingService {
   private ingredients: Ingredient[] = [];
 
-  editShoppingList = new Subject<number>();
+  editShoppingList = new Subject<string>();
   updateShoppingList = new Subject<void>();
 
-  getIngredient(ingredientId: number): Ingredient {
+  getIngredient(ingredientId: string): Ingredient {
     return this.ingredients.find(
       ingredient => ingredient.id === ingredientId
     ) as Ingredient;
@@ -32,7 +32,7 @@ export class ShoppingService {
     this.updateShoppingList.next();
   }
 
-  deleteIngredient(ingredientId: number): void {
+  deleteIngredient(ingredientId: string): void {
     const filteredIngredientArray = this.ingredients.filter(
       ingredient => ingredient.id !== ingredientId
     );

@@ -61,7 +61,11 @@
             <li>
               <a
                 class="dropdown-item dropdown-option"
-                (click)="[closeOptionDropdown(), closeMenuDropdown()]"
+                (click)="[
+                  saveData(),
+                  closeOptionDropdown(),
+                  closeMenuDropdown()
+                ]"
               >
                 Save data
               </a>
@@ -69,7 +73,11 @@
             <li>
               <a
                 class="dropdown-item dropdown-option"
-                (click)="[closeOptionDropdown(), closeMenuDropdown()]"
+                (click)="[
+                  fetchData(),
+                  closeOptionDropdown(),
+                  closeMenuDropdown()
+                ]"
               >
                 Fetch data
               </a>

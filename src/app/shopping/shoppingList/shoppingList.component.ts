@@ -13,7 +13,7 @@ export class ShoppingList {
 
   constructor(private shoppingService: ShoppingService) {}
 
-  onIngredientClick(ingredientId: number): void {
+  onIngredientClick(ingredientId: string): void {
     this.shoppingService.editShoppingList.next(ingredientId);
   }
 }

@@ -1,3 +1,5 @@
+import { v4 } from 'uuid';
+
 import { Ingredient } from '../../shopping/models/ingredient';
 
 export class Recipe {
@@ -9,6 +11,6 @@ export class Recipe {
     public imagePath: string,
     public ingredients: Ingredient[],
   ) {
-    this.id = String(new Date().getTime());
+    this.id = v4();
   }
 }

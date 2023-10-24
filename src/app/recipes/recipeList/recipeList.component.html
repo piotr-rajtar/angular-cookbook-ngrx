@@ -10,9 +10,15 @@
 </div>
 <hr />
 <div class="row">
-  <div class="col-12 list-group">
+  <div
+    *ngIf="recipes.length; else noRecipes"
+    class="col-12 list-group"
+  >
     <recipe-item *ngFor="let recipe of recipes" [recipe]="recipe" />
   </div>
+  <ng-template #noRecipes>
+    <p>No recipes! Please fetch or add some!</p>
+  </ng-template>
 </div>
 
 

@@ -14,7 +14,7 @@ export class ShoppingListEdit implements OnDestroy, OnInit {
   ingredientAmount: number | null = null;
   ingredientName: string = '';
   editShoppingListSubscription!: Subscription;
-  editedIngredientId?: number;
+  editedIngredientId?: string;
   isInEditMode: boolean = false;
 
   constructor(private shoppingService: ShoppingService) {}
@@ -72,7 +72,7 @@ export class ShoppingListEdit implements OnDestroy, OnInit {
 
   updateIngredient(shoppingListForm: NgForm): void {
     const ingredient: Ingredient = {
-      id: this.editedIngredientId as number,
+      id: this.editedIngredientId as string,
       amount: shoppingListForm.value.ingredientAmount,
       name: shoppingListForm.value.ingredientName,
     };
@@ -96,7 +96,7 @@ export class ShoppingListEdit implements OnDestroy, OnInit {
   }
 
   deleteIngredient(shoppingListForm: NgForm): void {
-    this.shoppingService.deleteIngredient(this.editedIngredientId as number);
+    this.shoppingService.deleteIngredient(this.editedIngredientId as string);
 
     this.clearIngredient(shoppingListForm);
   }

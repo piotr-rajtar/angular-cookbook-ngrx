@@ -10,44 +10,7 @@ import { Recipe } from '../models/recipe';
   providedIn: 'root',
 })
 export class RecipeService {
-  private recipes: Recipe[] = [
-    {
-      id: '0',
-      name: 'Test recipe name1',
-      description: 'Test recipe description1',
-      imagePath: 'https://cdn.pixabay.com/photo/2020/06/15/18/21/croissants-5302909_1280.jpg',
-      ingredients: [
-        {
-          id: 1,
-          name: 'butter',
-          amount: 1,
-        },
-        {
-          id: 2,
-          name: 'flour',
-          amount: 2,
-        }
-      ],
-    },
-    {
-      id: '1',
-      name: 'Test recipe name2',
-      description: 'Test recipe description2',
-      imagePath: 'https://cdn.pixabay.com/photo/2020/06/15/18/21/croissants-5302909_1280.jpg',
-      ingredients: [
-        {
-          id: 3,
-          name: 'butter',
-          amount: 2,
-        },
-        {
-          id: 4,
-          name: 'oil',
-          amount: 1,
-        }
-      ],
-    },
-  ];
+  private recipes: Recipe[] = [];
 
   recipeListChange = new Subject<void>();
 
@@ -55,6 +18,12 @@ export class RecipeService {
 
   addRecipe(newRecipe: Recipe): void {
     this.recipes.push(newRecipe);
+
+    this.recipeListChange.next();
+  }
+
+  setRecipes(newRecipes: Recipe[]): void {
+    this.recipes = newRecipes;
 
     this.recipeListChange.next();
   }

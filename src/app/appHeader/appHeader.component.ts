@@ -1,11 +1,15 @@
 import { Component } from '@angular/core';
 
+import { DataStorageService } from '../services/data-storage.service';
+
 @Component({
   selector: 'app-header',
   templateUrl: './appHeader.component.html',
   styleUrls: ['./appHeader.component.scss'],
 })
 export class AppHeader {
+  constructor(private dataStorageService: DataStorageService) { }
+
   isMenuDropdownOpen = false;
 
   closeMenuDropdown(): void {
@@ -24,5 +28,13 @@ export class AppHeader {
 
   toggleDropdown(): void {
     this.isOptionDropdownOpen = !this.isOptionDropdownOpen;
+  }
+
+  fetchData(): void {
+    this.dataStorageService.fetchRecipes().subscribe();
+  }
+
+  saveData(): void {
+    this.dataStorageService.storeRecipes();
   }
 }

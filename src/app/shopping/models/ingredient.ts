@@ -1,10 +1,12 @@
+import { v4 } from 'uuid';
+
 export class Ingredient {
-  id: number;
+  id: string;
 
   constructor(
     public name: string,
     public amount: number
   ) {
-    this.id = new Date().getTime();
+    this.id = v4();
   }
 }
