@@ -18,6 +18,13 @@ const routes: Routes = [
   {
     path: 'recipes',
     component: RecipeContainer,
+    //WYNIOSŁEM TO WYŻEJ
+    //PRZY KLIKNIĘCIU W RECIPE BOOK, ŁADOWAŁA SIĘ STRONA GŁÓWNA BEZ PRZEPISÓW
+    //MIMO, ŻE ZOSTAŁY ZFETCHOWANE PRZY WEJŚCIU NA LINK EDIT, CZY SAMYCH SZCZEGÓŁÓW
+    //ZMIANA DLA POPRAWY UX
+    resolve: {
+      recipeResolver,
+    },
     children: [
       {
         path: '',
@@ -30,16 +37,16 @@ const routes: Routes = [
       {
         path: ':id',
         component: RecipeDetail,
-        resolve: {
-          recipeResolver,
-        },
+        // resolve: {
+        //   recipeResolver,
+        // },
       },
       {
         path: ':id/edit',
         component: RecipeEditComponent,
-        resolve: {
-          recipeResolver,
-        },
+        // resolve: {
+        //   recipeResolver,
+        // },
       },
     ]
   },
