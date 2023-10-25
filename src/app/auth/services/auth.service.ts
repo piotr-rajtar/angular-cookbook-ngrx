@@ -3,7 +3,8 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, catchError, tap, throwError } from 'rxjs';
 
-import { API_KEY } from '../models/api-key';
+import { environment } from '../../../environments/environment';
+
 import { User } from '../models/user';
 import {
   AUTH_ERROR_KEYS,
@@ -29,7 +30,7 @@ export class AuthService {
 
   signIn(authFormData: AuthFormData): Observable<SignInResponseData> {
     return this.httpClient.post<SignInResponseData>(
-      `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${API_KEY}`,
+      `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.API_KEY}`,
       {
         ...authFormData,
         returnSecureToken: true,
@@ -50,7 +51,7 @@ export class AuthService {
 
   signUp(authFormData: AuthFormData): Observable<SignUpResponseData> {
     return this.httpClient.post<SignUpResponseData>(
-      `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${API_KEY}`,
+      `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${environment.API_KEY}`,
       {
         ...authFormData,
         returnSecureToken: true,
