@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm, NgModel, ValidationErrors } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import {
   AuthFormData,
@@ -18,7 +19,10 @@ export class AuthComponent {
   isLoading: boolean = false;
   error: string | null = null;
 
-  constructor(private authService: AuthService) { }
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+  ) { }
 
   get authButtonTitle(): string {
     return this.isAuthenticated
@@ -74,9 +78,9 @@ export class AuthComponent {
 
   signIn(authFormData: AuthFormData) {
     this.authService.signIn(authFormData).subscribe({
-      next: (authResponseData: SignInResponseData) => {
-        console.log(authResponseData);
+      next: (_authResponseData: SignInResponseData) => {
         this.isLoading = false;
+        this.router.navigate(['/recipes']);
       },
       error: (errorResponce: Error) => {
         this.error = errorResponce.message;
@@ -87,9 +91,9 @@ export class AuthComponent {
 
   signUp(authFormData: AuthFormData) {
     this.authService.signUp(authFormData).subscribe({
-      next: (authResponseData: SignUpResponseData) => {
-        console.log(authResponseData);
+      next: (_authResponseData: SignUpResponseData) => {
         this.isLoading = false;
+        this.router.navigate(['/recipes']);
       },
       error: (errorResponce: Error) => {
         this.error = errorResponce.message;

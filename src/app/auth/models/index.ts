@@ -34,3 +34,10 @@ export interface SignInResponseData {
   kind: string;
   registered: boolean;
 }
+
+export interface StoredUserData {
+  email: string,
+  id: string,
+  _token: string,
+  _tokenExpirationDate: string,
+}

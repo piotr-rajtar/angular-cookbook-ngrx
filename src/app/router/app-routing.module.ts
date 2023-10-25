@@ -11,6 +11,8 @@ import { ShoppingListContainer } from '../shopping/shoppingListContainer/shoppin
 
 import { AuthComponent } from '../auth/auth.component';
 
+import { authGuard } from './guards/auth.guard';
+
 const routes: Routes = [
   {
     path: '',
@@ -19,6 +21,7 @@ const routes: Routes = [
   },
   {
     path: 'recipes',
+    canActivate: [authGuard],
     component: RecipeContainer,
     //WYNIOSŁEM TO WYŻEJ
     //PRZY KLIKNIĘCIU W RECIPE BOOK, ŁADOWAŁA SIĘ STRONA GŁÓWNA BEZ PRZEPISÓW

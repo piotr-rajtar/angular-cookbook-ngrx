@@ -24,6 +24,8 @@ import { ShoppingListEdit } from './shopping/shoppingListEdit/shoppingListEdit.c
 import { ClickOutsideDirective } from './directives/clickOutside.directive';
 import { DropdownDirective } from './directives/dropdown.directive';
 
+import { authInterceptorProvider } from './router/interceptors';
+
 @NgModule({
   declarations: [
     //COMPONENTS
@@ -50,7 +52,9 @@ import { DropdownDirective } from './directives/dropdown.directive';
     HttpClientModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    authInterceptorProvider,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
