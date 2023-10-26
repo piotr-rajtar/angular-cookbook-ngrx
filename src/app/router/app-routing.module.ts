@@ -5,13 +5,14 @@ import { RecipeContainer } from '../recipes/recipeContainer/recipeContainer.comp
 import { RecipeDetail } from '../recipes/recipeDetail/recipeDetail.component';
 import { RecipeEditComponent } from '../recipes/recipeEdit/recipeEdit.component';
 import { RecipeNoSelectionComponent } from '../recipes/recipeNoSelection/recipeNoSelection.component';
-import { recipeResolver } from '../recipes/resolvers/recipe.resolver';
+
 
 import { ShoppingListContainer } from '../shopping/shoppingListContainer/shoppingListContainer.component';
 
 import { AuthComponent } from '../auth/auth.component';
 
 import { authGuard } from './guards/auth.guard';
+import { recipeResolver } from './resolvers/recipe.resolver';
 
 const routes: Routes = [
   {

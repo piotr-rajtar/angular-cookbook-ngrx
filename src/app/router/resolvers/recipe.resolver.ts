@@ -2,11 +2,13 @@ import { inject } from '@angular/core';
 import { ResolveFn } from '@angular/router';
 import { Observable, of } from 'rxjs';
 
+import { Recipe } from '../../recipes/models/recipe';
+import { RecipeService } from '../../recipes/services/recipe.service';
+
 import { DataStorageService } from '../../services/data-storage.service';
 
-import { Recipe } from '../models/recipe';
-import { RecipeService } from '../services/recipe.service';
-
+//RESOLVER MOŻE SŁUŻYĆ DO POZYSKIWANIA DANYCH PRZED ZAŁADOWANIEM ROUTA
+//PIERWSZEŃSTWO PRZD RESOLVERAMI MAJĄ GUARDY
 export const recipeResolver: ResolveFn<Observable<Recipe[]> | Recipe[]> = (
   _route, _state
 ) => {
