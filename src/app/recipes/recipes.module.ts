@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { DirectivesModule } from '../directives/directives.module';
+import { SharedModule } from '../shared/shared.module';
 
 import { RecipeContainer } from './components/recipeContainer/recipeContainer.component';
 import { RecipeDetail } from './components/recipeDetail/recipeDetail.component';
@@ -23,10 +22,9 @@ import { RecipesRoutingModule } from './router/recipes-routing.module';
     RecipeNoSelectionComponent,
   ],
   imports: [
-    CommonModule,
-    DirectivesModule,
     ReactiveFormsModule,
     RecipesRoutingModule,
+    SharedModule
   ],
 })
 export class RecipesModule { }

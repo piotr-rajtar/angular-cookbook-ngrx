@@ -2,10 +2,10 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { AuthService } from '../auth/services/auth.service';
-import { PlaceholderDirective } from '../directives/placeholder.directive';
-import { DataStorageService } from '../services/data-storage.service';
-import { AlertComponent } from '../components/alert/alert.component';
-import { AlertType } from '../models';
+import { AlertComponent } from '../shared/components/alert/alert.component';
+import { PlaceholderDirective } from '../shared/directives/placeholder.directive';
+import { AlertType } from '../shared/models';
+import { DataStorageService } from '../shared/services/data-storage.service';
 
 @Component({
   selector: 'app-header',

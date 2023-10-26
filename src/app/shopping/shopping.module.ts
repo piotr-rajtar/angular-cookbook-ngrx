@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+
+import { SharedModule } from '../shared/shared.module';
 
 import { ShoppingRoutingModule } from './router/shopping-routing.module';
 
@@ -15,8 +16,8 @@ import { ShoppingListEdit } from './components/shoppingListEdit/shoppingListEdit
     ShoppingListEdit,
   ],
   imports: [
-    CommonModule,
     FormsModule,
+    SharedModule,
     ShoppingRoutingModule,
   ]
 })

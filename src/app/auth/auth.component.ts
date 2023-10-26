@@ -3,9 +3,9 @@ import { NgForm, NgModel, ValidationErrors } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
-import { AlertComponent } from '../components/alert/alert.component';
-import { PlaceholderDirective } from '../directives/placeholder.directive';
-import { AlertType } from '../models';
+import { PlaceholderDirective } from '../shared/directives/placeholder.directive';
+import { AlertType } from '../shared/models';
+import { AlertComponent } from '../shared/components/alert/alert.component';
 
 import {
   AuthFormData,
