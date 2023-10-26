@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
-import { Ingredient } from '../models/ingredient';
-import { ShoppingService } from '../services/shopping.service';
+import { Ingredient } from '../../models/ingredient';
+import { ShoppingService } from '../../services/shopping.service';
 
 @Component({
   selector: 'shopping-list',

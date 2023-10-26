@@ -3,20 +3,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+import { AppRoutingModule } from './router/app-routing.module';
 import { DirectivesModule } from './directives/directives.module';
 import { RecipesModule } from './recipes/recipes.module';
-import { AppRoutingModule } from './router/app-routing.module';
+import { ShoppingModule } from './shopping/shopping.module';
 
 import { AppComponent } from './app.component';
 
 import { AlertComponent } from './components/alert/alert.component';
 import { AppHeader } from './appHeader/appHeader.component';
 import { AuthComponent } from './auth/auth.component';
-
-import { ShoppingListContainer } from './shopping/shoppingListContainer/shoppingListContainer.component';
-import { ShoppingList } from './shopping/shoppingList/shoppingList.component';
-import { ShoppingListEdit } from './shopping/shoppingListEdit/shoppingListEdit.component';
-
 
 import { authInterceptorProvider } from './router/interceptors';
 
@@ -27,9 +23,6 @@ import { authInterceptorProvider } from './router/interceptors';
     AppComponent,
     AppHeader,
     AuthComponent,
-    ShoppingListContainer,
-    ShoppingList,
-    ShoppingListEdit,
   ],
   imports: [
     AppRoutingModule,
@@ -39,8 +32,8 @@ import { authInterceptorProvider } from './router/interceptors';
     DirectivesModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule,
     RecipesModule,
+    ShoppingModule,
   ],
   providers: [
     authInterceptorProvider,
