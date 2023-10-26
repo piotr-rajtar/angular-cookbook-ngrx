@@ -1,12 +1,8 @@
 <div class="row">
   <div class="col-12 col-md-6 offset-md-3">
-    <div
-      *ngIf="error"
-      class="alert alert-danger"
-      role="alert"
-    >
-      {{ error }}
-    </div>
+
+    <!-- <app-alert *ngIf="error" [message]="error" (close)="closeErrorAlert()" /> -->
+    <ng-template appPlaceholder />
     <form
       *ngIf="!isLoading; else spinner"
       #authForm="ngForm"
@@ -62,7 +58,7 @@
       <button
         class="btn btn-primary"
         type="button"
-        (click)="switchAuthenticationMode()"
+        (click)="[switchAuthenticationMode(), authForm.reset()]"
       >
         {{ switchButtonTitle }}
       </button>

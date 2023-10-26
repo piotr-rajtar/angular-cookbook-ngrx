@@ -1,0 +1,15 @@
+<div class="backdrop"></div>
+<div
+  [class]="['alert', alertTypeClass, 'alert-box']"
+  role="alert"
+>
+  <p>{{ message }}</p>
+  <div class="alert-box-actions">
+    <button
+      [class]="['btn', buttonTypeClass]"
+      (click)="closeAlert()"
+    >
+      Close
+    </button>
+  </div>
+</div>

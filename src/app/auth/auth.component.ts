@@ -1,6 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, OnDestroy } from '@angular/core';
 import { NgForm, NgModel, ValidationErrors } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+
+import { AlertComponent } from '../components/alert/alert.component';
+import { PlaceholderDirective } from '../directives/placeholder.directive';
+import { AlertType } from '../models';
 
 import {
   AuthFormData,
@@ -14,10 +19,13 @@ import { AuthService } from './services/auth.service';
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss']
 })
-export class AuthComponent {
+export class AuthComponent implements OnDestroy {
+  closeAlertSubscription!: Subscription;
   isAuthenticated: boolean = false;
   isLoading: boolean = false;
   error: string | null = null;
+
+  @ViewChild(PlaceholderDirective) alertHost!: PlaceholderDirective;
 
   constructor(
     private authService: AuthService,
@@ -85,6 +93,7 @@ export class AuthComponent {
       error: (errorResponce: Error) => {
         this.error = errorResponce.message;
         this.isLoading = false;
+        this.showErrorAlert(errorResponce.message);
       }
     });
   }
@@ -98,7 +107,44 @@ export class AuthComponent {
       error: (errorResponce: Error) => {
         this.error = errorResponce.message;
         this.isLoading = false;
+        this.showErrorAlert(errorResponce.message);
       }
     });
+  }
+
+  //FRAGMENT KODU DO NG-IFA
+  // closeErrorAlert(): void {
+  //   this.error = null;
+  // }
+
+  //ZOSTAWIONE DO CELÓW DEMONSTRACYJNYCH
+  //PREFEROWANE JEST ZAWSZE UŻYWANIE NGIFA, KTÓRY ROBI TO WSZYSTKO ZA NAS
+
+  private showErrorAlert(errorMessage: string): void {
+    //WYBIERAMY KONTENER, KTÓRY POSIADA DYREKTYWE PlaceholderDirective GDZIE BĘDZIE WYŚWIETLANY NASZ ALERT
+    const viewContainerRef = this.alertHost.viewContainerRef;
+
+    //CZYŚCIMY TEN KONTENER Z JAKICHŚ INNYCH KOMPONENTÓW, KTÓRE MOGŁY BYĆ TAM POPRZEDNIO WRZUCONE
+    viewContainerRef.clear();
+
+    //TWORZYMY NOWĄ INSTANCJĘ KOMPONENTU ALERTU
+    const componentRef = viewContainerRef.createComponent<AlertComponent>(AlertComponent);
+
+    //DODAJEMY PROPY
+    componentRef.instance.message = errorMessage;
+    componentRef.instance.type = AlertType.DANGER;
+
+    //SUBSKRYBUJEMY TYLKO NA SUBJECT LUB BEHAVIOUR SUBJECT LUB OBSERVABLE
+    //TO JEDYNY PRZYPADEK KIEDY MOŻNA SUBSKRYBOWAĆ SIĘ NA EVENT
+    this.closeAlertSubscription = componentRef.instance.close.subscribe(() => {
+      this.closeAlertSubscription.unsubscribe();
+      viewContainerRef.clear();
+    });
+  }
+
+  ngOnDestroy(): void {
+    if(this.closeAlertSubscription) {
+      this.closeAlertSubscription.unsubscribe();
+    }
   }
 }

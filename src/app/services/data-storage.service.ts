@@ -33,15 +33,15 @@ export class DataStorageService {
     );
   }
 
-  storeRecipes(): void {
+  storeRecipes(): Observable<Recipe[]> {
     const recipes = this.recipeService.getRecipes() ;
     //POST DODA CAŁA TABLICĘ JAKO POJEDYNCZY REKORD
 
     //PUT NADPISUJE ZAPISANE REKORDY TYMI WYSYŁANYMI
     //I KAZDY ELEMENT Z TABLICY ZAPISUJE OSOBNO DO KOLEKCJI
-    this.httpClient.put<Recipe[]>(
+    return this.httpClient.put<Recipe[]>(
       'https://angular-cook-book-35d2a-default-rtdb.firebaseio.com/recipes.json',
       recipes
-    ).subscribe();
+    );
   }
 }

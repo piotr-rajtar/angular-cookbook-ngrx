@@ -7,6 +7,7 @@ import { AppRoutingModule } from './router/app-routing.module';
 
 import { AppComponent } from './app.component';
 
+import { AlertComponent } from './components/alert/alert.component';
 import { AppHeader } from './appHeader/appHeader.component';
 import { AuthComponent } from './auth/auth.component';
 
@@ -23,12 +24,14 @@ import { ShoppingListEdit } from './shopping/shoppingListEdit/shoppingListEdit.c
 
 import { ClickOutsideDirective } from './directives/clickOutside.directive';
 import { DropdownDirective } from './directives/dropdown.directive';
+import { PlaceholderDirective } from './directives/placeholder.directive';
 
 import { authInterceptorProvider } from './router/interceptors';
 
 @NgModule({
   declarations: [
     //COMPONENTS
+    AlertComponent,
     AppComponent,
     AppHeader,
     AuthComponent,
@@ -44,6 +47,7 @@ import { authInterceptorProvider } from './router/interceptors';
     //DIRECTIVES
     ClickOutsideDirective,
     DropdownDirective,
+    PlaceholderDirective
   ],
   imports: [
     AppRoutingModule,
