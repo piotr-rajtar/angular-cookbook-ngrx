@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
 
-import { authInterceptorProvider } from './router/interceptors';
+import { authInterceptorProvider } from './auth/router/interceptors';
 
 @NgModule({
-  providers: [
-    authInterceptorProvider
-  ]
+  providers: [ authInterceptorProvider ],
 })
 export class CoreModule { }

@@ -3,16 +3,16 @@ import { NgForm, NgModel, ValidationErrors } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
-import { PlaceholderDirective } from '../shared/directives/placeholder.directive';
-import { AlertType } from '../shared/models';
-import { AlertComponent } from '../shared/components/alert/alert.component';
+import { PlaceholderDirective } from '../../shared/directives/placeholder.directive';
+import { AlertType } from '../../shared/models';
+import { AlertComponent } from '../../shared/components/alert/alert.component';
 
 import {
   AuthFormData,
   SignInResponseData,
   SignUpResponseData,
-} from './models';
-import { AuthService } from './services/auth.service';
+} from '../models';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-auth',
