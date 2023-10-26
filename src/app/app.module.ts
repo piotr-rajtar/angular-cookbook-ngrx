@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+import { DirectivesModule } from './directives/directives.module';
+import { RecipesModule } from './recipes/recipes.module';
 import { AppRoutingModule } from './router/app-routing.module';
 
 import { AppComponent } from './app.component';
@@ -11,20 +13,10 @@ import { AlertComponent } from './components/alert/alert.component';
 import { AppHeader } from './appHeader/appHeader.component';
 import { AuthComponent } from './auth/auth.component';
 
-import { RecipeContainer } from './recipes/recipeContainer/recipeContainer.component';
-import { RecipeDetail } from './recipes/recipeDetail/recipeDetail.component';
-import { RecipeEditComponent } from './recipes/recipeEdit/recipeEdit.component';
-import { RecipeItem } from './recipes/recipeItem/recipeItem.component';
-import { RecipeList } from './recipes/recipeList/recipeList.component';
-import { RecipeNoSelectionComponent } from './recipes/recipeNoSelection/recipeNoSelection.component';
-
 import { ShoppingListContainer } from './shopping/shoppingListContainer/shoppingListContainer.component';
 import { ShoppingList } from './shopping/shoppingList/shoppingList.component';
 import { ShoppingListEdit } from './shopping/shoppingListEdit/shoppingListEdit.component';
 
-import { ClickOutsideDirective } from './directives/clickOutside.directive';
-import { DropdownDirective } from './directives/dropdown.directive';
-import { PlaceholderDirective } from './directives/placeholder.directive';
 
 import { authInterceptorProvider } from './router/interceptors';
 
@@ -35,26 +27,20 @@ import { authInterceptorProvider } from './router/interceptors';
     AppComponent,
     AppHeader,
     AuthComponent,
-    RecipeContainer,
-    RecipeDetail,
-    RecipeEditComponent,
-    RecipeItem,
-    RecipeList,
-    RecipeNoSelectionComponent,
     ShoppingListContainer,
     ShoppingList,
     ShoppingListEdit,
-    //DIRECTIVES
-    ClickOutsideDirective,
-    DropdownDirective,
-    PlaceholderDirective
   ],
   imports: [
     AppRoutingModule,
+    //BROWSER MODULE POWINIEN BYĆ ZAIMPORTOWANY RAZ TYLKO W GŁÓWNYM MODULE
+    //DO KAŻDEGO INNEGO MODUŁU, ZAMIAST NIEGO IMMPORTUJEMY COMMON MODULE
     BrowserModule,
+    DirectivesModule,
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    RecipesModule,
   ],
   providers: [
     authInterceptorProvider,

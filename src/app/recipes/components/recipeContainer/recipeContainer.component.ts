@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { Recipe } from '../models/recipe';
-import { RecipeService } from '../services/recipe.service';
+import { Recipe } from '../../models/recipe';
+import { RecipeService } from '../../services/recipe.service';
 
 @Component({
   selector: 'recipe-container',

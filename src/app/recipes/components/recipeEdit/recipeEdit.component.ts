@@ -9,10 +9,10 @@ import {
 } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
-import { Ingredient } from '../../shopping/models/ingredient';
+import { Ingredient } from '../../../shopping/models/ingredient';
 
-import { Recipe } from '../models/recipe';
-import { RecipeService } from '../services/recipe.service';
+import { Recipe } from '../../models/recipe';
+import { RecipeService } from '../../services/recipe.service';
 
 @Component({
   selector: 'app-recipe-edit',
