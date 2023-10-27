@@ -6,7 +6,7 @@ import { ShoppingService } from '../../services/shopping.service';
 @Component({
   selector: 'shopping-list',
   templateUrl: './shoppingList.component.html',
-  styleUrls: ['./shoppingList.component.scss']
+  styleUrls: ['./shoppingList.component.scss'],
 })
 export class ShoppingList {
   @Input({ required: true }) ingredients!: Ingredient[];

@@ -2,8 +2,10 @@
   <div class="col-12">
     <form (ngSubmit)="onSubmit(shoppingListForm)" #shoppingListForm="ngForm">
       <div class="row">
-        <div class="col-sm-5">
-          <label for="ingredientInputId" class="form-label">Name</label>
+        <div class="col-12 col-sm-5">
+          <label for="ingredientInputId" class="form-label">
+            <b>Name</b>
+          </label>
           <input
             id="ingredientInputId"
             class="form-control"
@@ -21,8 +23,10 @@
             Field is required!
           </p>
         </div>
-        <div class="col-sm-3">
-          <label for="ingredientAmountId" class="form-label">Amount</label>
+        <div class="col-12 col-sm-3">
+          <label for="ingredientAmountId" class="form-label">
+            <b>Amount</b>
+          </label>
           <input
             id="ingredientAmountId"
             class="form-control"
@@ -46,7 +50,7 @@
         <div class="col-12">
           <button
             type="submit"
-            class="btn btn-success me-3"
+            class="btn btn-success me-3 button-mobile"
             [disabled]="!shoppingListForm.valid"
           >
             {{ addButtonTitle }}
@@ -54,7 +58,7 @@
 
           <button
             type="button"
-            class="btn btn-danger me-3"
+            class="btn btn-danger me-3 button-mobile"
             [disabled]="!isInEditMode"
             (click)="deleteIngredient(shoppingListForm)"
           >
@@ -63,7 +67,7 @@
 
           <button
             type="button"
-            class="btn btn-primary"
+            class="btn btn-primary button-mobile"
             (click)="clearIngredient(shoppingListForm)"
           >
             Clear

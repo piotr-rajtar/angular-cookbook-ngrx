@@ -12,3 +12,29 @@
 .recipe-dropdown-item {
   cursor: pointer;
 }
+
+.mobile-width {
+  @Media(max-width: 767px) {
+    width: 100%;
+  }
+}
+
+.mobile-header {
+  @Media(max-width: 767px) {
+    text-align: center;
+    margin-block: 12px;
+  }
+}
+
+.mobile-description {
+  @Media(max-width: 767px) {
+    text-align: center;
+    margin: 12px 0;
+  }
+}
+
+.ingredients-mobile-title {
+  @Media(max-width: 767px) {
+    text-align: center;
+  }
+}

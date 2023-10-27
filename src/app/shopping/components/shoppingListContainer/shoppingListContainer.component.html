@@ -1,10 +1,10 @@
 <div class="row">
-  <div class="col-10">
+  <div class="col-12 col-md-10">
     <shopping-list-edit />
     <hr />
     <shopping-list *ngIf="ingredients.length; else infoText" [ingredients]="ingredients" />
     <ng-template #infoText>
-      <p>No ingredients on the list</p>
+      <p class="mobile-paragraph">No ingredients on the list</p>
     </ng-template>
   </div>
 </div>

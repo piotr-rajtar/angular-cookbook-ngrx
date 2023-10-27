@@ -3,3 +3,9 @@
     width: 100%;
   }
 }
+
+.list-padding {
+  @Media(max-width: 767px) {
+    padding-left: 12px;
+  }
+}

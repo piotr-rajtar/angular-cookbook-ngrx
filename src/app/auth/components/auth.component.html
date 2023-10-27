@@ -9,7 +9,9 @@
       (ngSubmit)="onSubmit(authForm)"
     >
       <div class="mb-3">
-        <label for="email" class="form-label">Email address</label>
+        <label for="email" class="form-label">
+          <b>Email address</b>
+        </label>
         <input
           id="email"
           autocomplete="username"
@@ -29,7 +31,9 @@
         </p>
       </div>
       <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
+        <label for="password" class="form-label">
+          <b>Password</b>
+        </label>
         <input
           id="password"
           autocomplete="current-password"
@@ -49,14 +53,14 @@
         </p>
       </div>
       <button
-        class="btn btn-primary me-3"
+        class="btn btn-primary me-3 button-mobile"
         [disabled]="!authForm.valid"
         type="submit"
       >
         {{ authButtonTitle }}
       </button>
       <button
-        class="btn btn-primary"
+        class="btn btn-primary button-mobile"
         type="button"
         (click)="[switchAuthenticationMode(), authForm.reset()]"
       >

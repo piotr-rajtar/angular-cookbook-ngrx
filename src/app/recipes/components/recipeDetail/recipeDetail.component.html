@@ -10,12 +10,12 @@
   </div>
   <div class="row">
     <div class="col-12">
-      <h1>{{ recipe.name }}</h1>
+      <h1 class="mobile-header">{{ recipe.name }}</h1>
     </div>
   </div>
   <div class="row">
     <div class="col-12">
-      <div class="btn-group" role="group">
+      <div class="btn-group mobile-width" role="group">
         <button
           [appDropdown]="isDropdownOpen"
           [ariaExpanded]="isDropdownOpen"
@@ -31,6 +31,7 @@
           [class]="{
             'dropdown-menu': true,
             openDropdown: isDropdownOpen,
+            'mobile-width': true,
           }"
         >
           <li>
@@ -63,13 +64,13 @@
   </div>
   <div class="row">
     <div class="col-12">
-      {{ recipe.description }}
+      <p class="mobile-description">{{ recipe.description }}</p>
     </div>
   </div>
   <div *ngIf="recipe.ingredients.length" class="row">
     <div class="col-12">
-      <h4 class="my-3">Ingredients list:</h4>
-      <ul class="list-group">
+      <h4 class="my-3 ingredients-mobile-title">Ingredients list:</h4>
+      <ul class="list-group mb-3">
         <li
           *ngFor="let ingredient of recipe.ingredients"
           class="list-group-item"

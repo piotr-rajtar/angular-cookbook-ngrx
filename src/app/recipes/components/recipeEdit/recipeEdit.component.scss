@@ -24,3 +24,10 @@
     margin-bottom: 10px;
   }
 }
+
+.mobile-delete-button.mobile-delete-button {
+  @Media(max-width: 767px) {
+    width: 100%;
+    margin: 0 0 10px;
+  }
+}

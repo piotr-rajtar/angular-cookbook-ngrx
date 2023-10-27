@@ -12,7 +12,7 @@
 <div class="row">
   <div
     *ngIf="recipes.length; else noRecipes"
-    class="col-12 list-group"
+    class="col-12 list-group list-padding"
   >
     <recipe-item *ngFor="let recipe of recipes" [recipe]="recipe" />
   </div>
