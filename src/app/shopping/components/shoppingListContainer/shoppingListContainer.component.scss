@@ -1,5 +1,5 @@
-.mobile-paragraph {
-  @Media(max-width: 767px) {
-    text-align: center;
-  }
+@use '../../../shared/scss/mixins.scss';
+
+.paragraph-mobile {
+  @include mixins.mobile-header;
 }

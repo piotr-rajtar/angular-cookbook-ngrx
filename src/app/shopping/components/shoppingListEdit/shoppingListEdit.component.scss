@@ -1,18 +1,19 @@
-.ng-invalid.ng-touched:not(form) {
-  border-left: 5px solid red;
+@use '../../../shared/scss/mixins.scss';
+
+.ng-invalid.ng-touched:not(.form) {
+  @include mixins.form-field-invalid;
 }
 
 .error {
-  color: red;
+  @include mixins.error-message;
 }
 
 .button-mobile {
-  @Media(max-width: 767px) {
-    width: 100%;
+  @include mixins.mobile-button {
     margin-bottom: 12px;
 
     &:last-of-type {
       margin-bottom: 0;
     }
-  }
+  };
 }

@@ -5,6 +5,7 @@
     <ng-template appPlaceholder />
     <form
       *ngIf="!isLoading; else spinner"
+      class="form"
       #authForm="ngForm"
       (ngSubmit)="onSubmit(authForm)"
     >

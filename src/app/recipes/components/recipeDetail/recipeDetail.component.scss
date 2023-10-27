@@ -1,3 +1,5 @@
+@use '../../../shared/scss/mixins.scss';
+
 .image {
   max-height: 300px;
 }
@@ -13,28 +15,12 @@
   cursor: pointer;
 }
 
-.mobile-width {
-  @Media(max-width: 767px) {
-    width: 100%;
-  }
+.button-mobile {
+  @include mixins.mobile-button;
 }
 
-.mobile-header {
-  @Media(max-width: 767px) {
-    text-align: center;
+.header-mobile {
+  @include mixins.mobile-header {
     margin-block: 12px;
-  }
-}
-
-.mobile-description {
-  @Media(max-width: 767px) {
-    text-align: center;
-    margin: 12px 0;
-  }
-}
-
-.ingredients-mobile-title {
-  @Media(max-width: 767px) {
-    text-align: center;
-  }
+  };
 }

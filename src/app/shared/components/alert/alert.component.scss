@@ -1,3 +1,5 @@
+@use '../../scss/mixins.scss';
+
 .backdrop {
   position: fixed;
   top: 0;
@@ -20,4 +22,8 @@
 
 .alert-box-actions {
   text-align: right;
+}
+
+.button-mobile {
+  @include mixins.mobile-button;
 }

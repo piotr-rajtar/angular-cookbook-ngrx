@@ -1,20 +1,21 @@
 <div class="row">
   <div class="col-12">
     <form
+      class="form"
       [formGroup]="recipeForm"
       (ngSubmit)="[onSubmit(), goBack()]"
     >
       <div class="row mb-4">
         <div class="col-12">
           <button
-            class="btn btn-success me-3 button-width"
+            class="btn btn-success me-3 button-mobile"
             [disabled]="!recipeForm.valid"
             type="submit"
           >
             Save
           </button>
           <button
-            class="btn btn-danger button-width"
+            class="btn btn-danger button-mobile"
             type="button"
             (click)="goBack()"
           >
@@ -99,7 +100,7 @@
       </div>
 
       <div class="row" formArrayName="ingredients">
-        <h4 class="subheader">Ingredients</h4>
+        <h4 class="text-center">Ingredients</h4>
         <div class="col-12">
           <div
             *ngFor="let ingredientControls of ingredientsControls; let index = index"
@@ -146,7 +147,7 @@
             </div>
             <div class="col-12 col-md-1">
               <button
-                class="btn btn-danger layout-margin mobile-delete-button"
+                class="btn btn-danger layout-margin delete-button-mobile"
                 type="button"
                 (click)="removeIngredient(index)"
               >
@@ -161,7 +162,7 @@
         <!-- <div class="row"> -->
           <div class="col-12">
             <button
-              class="btn btn-success mb-5 button-width"
+              class="btn btn-success mb-5 add-ingredient-button-mobile"
               type="button"
               (click)="addIngredient()"
             >

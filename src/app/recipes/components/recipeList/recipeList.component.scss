@@ -1,11 +1,11 @@
-.button-width {
-  @Media(max-width: 767px) {
-    width: 100%;
-  }
+@use '../../../shared/scss/mixins.scss';
+
+.button-mobile {
+  @include mixins.mobile-button;
 }
 
 .list-padding {
-  @Media(max-width: 767px) {
+  @include mixins.mobile {
     padding-left: 12px;
-  }
+  };
 }

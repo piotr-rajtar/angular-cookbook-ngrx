@@ -1,0 +1,27 @@
+@mixin mobile {
+  @Media(max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin mobile-button {
+  @include mobile {
+    width: 100%;
+    @content;
+  }
+}
+
+@mixin mobile-header {
+  @include mobile {
+    text-align: center;
+    @content;
+  }
+}
+
+@mixin form-field-invalid {
+  border-left: 5px solid red;
+}
+
+@mixin error-message {
+  color: red;
+}
