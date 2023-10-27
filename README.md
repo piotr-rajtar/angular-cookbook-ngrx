@@ -1,27 +1,43 @@
-# Cookbook
+# Angular cookbook
+Simple cookbook application.
 
+## Table of contents
+* [General info](#general-info)
+* [Technologies](#technologies)
+* [Setup](#setup)
+
+## General info
+This is simple cookbook application, with core angular feature implementations.
+
+After running the app, not authenticatd user can take use of shopping list, where user can:
+* add new ingredients to the shopping list
+* remove already existing one
+
+After authentication, user additionally can take use of recipe list, where user can:
+* add new recipes
+* edit existing one
+* removing recipes
+* save recipe list to the external database
+* fetch recipe list from the external database
+
+Please be aware of necessity of using API keys.
+
+In order to do that, please follow below steps:
+* enter `ng generate environments` in the terminal
+* add property `API_KEY` to the `environment` object in both files created by CLI.
+
+Application is also available on mobile devices.
+
+## Technologies
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.2.
 
-## Development server
+Library versions:
+* Angular - version 16.2
+* bootstrap - version 5.3.2
+* rxjs - version 7.8.0
+* uuid - version 9.0.1
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Setup
+After cloning project repository run `npm install` to install dependencies.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+After that, run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
