@@ -12,7 +12,7 @@ import { recipeResolver } from './resolvers/recipe.resolver';
 
 const routes: Routes = [
   {
-    path: 'recipes',
+    path: '',
     canActivate: [authGuard],
     component: RecipeContainer,
     //WYNIOSŁEM TO WYŻEJ
