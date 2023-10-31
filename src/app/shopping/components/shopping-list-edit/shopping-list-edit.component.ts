@@ -1,14 +1,17 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NgForm, NgModel } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { FormsModule, NgForm, NgModel } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 import { Ingredient } from '../../models/ingredient';
 import { ShoppingService } from '../../services/shopping.service';
 
 @Component({
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   selector: 'shopping-list-edit',
-  templateUrl: './shoppingListEdit.component.html',
-  styleUrls: ['./shoppingListEdit.component.scss']
+  templateUrl: './shopping-list-edit.component.html',
+  styleUrls: ['./shopping-list-edit.component.scss']
 })
 export class ShoppingListEdit implements OnDestroy, OnInit {
   ingredientAmount: number | null = null;
