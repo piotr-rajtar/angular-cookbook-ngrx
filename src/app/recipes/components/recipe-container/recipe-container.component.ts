@@ -1,13 +1,18 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { Recipe } from '../../models/recipe';
 import { RecipeService } from '../../services/recipe.service';
 
+import { RecipeList } from '../recipe-list/recipe-list.component';
+
 @Component({
+  standalone: true,
+  imports: [RouterModule, RecipeList],
   selector: 'recipe-container',
-  templateUrl: './recipeContainer.component.html',
-  styleUrls: ['./recipeContainer.component.scss']
+  templateUrl: './recipe-container.component.html',
+  styleUrls: ['./recipe-container.component.scss']
 })
 export class RecipeContainer implements OnDestroy, OnInit {
   recipes: Recipe[] = [];

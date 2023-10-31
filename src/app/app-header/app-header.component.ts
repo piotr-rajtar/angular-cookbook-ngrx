@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 
 import { AuthService } from '../auth/services/auth.service';
 import { AlertComponent } from '../shared/components/alert/alert.component';
+import { ClickOutsideDirective } from '../shared/directives/clickOutside.directive';
 import { DropdownDirective } from '../shared/directives/dropdown.directive';
 import { PlaceholderDirective } from '../shared/directives/placeholder.directive';
 import { AlertType } from '../shared/models';
@@ -11,7 +12,7 @@ import { DataStorageService } from '../shared/services/data-storage.service';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, DropdownDirective],
+  imports: [CommonModule, ClickOutsideDirective, DropdownDirective, PlaceholderDirective],
   selector: 'app-header',
   templateUrl: './app-header.component.html',
   styleUrls: ['./app-header.component.scss'],

@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import {
   AbstractControl,
   FormArray,
   FormBuilder,
   FormGroup,
+  ReactiveFormsModule,
   ValidationErrors,
   Validators,
 } from '@angular/forms';
@@ -15,9 +17,11 @@ import { Recipe } from '../../models/recipe';
 import { RecipeService } from '../../services/recipe.service';
 
 @Component({
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
   selector: 'app-recipe-edit',
-  templateUrl: './recipeEdit.component.html',
-  styleUrls: ['./recipeEdit.component.scss']
+  templateUrl: './recipe-edit.component.html',
+  styleUrls: ['./recipe-edit.component.scss']
 })
 export class RecipeEditComponent implements OnInit {
   id?: string;

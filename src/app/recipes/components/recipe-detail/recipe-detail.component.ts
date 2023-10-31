@@ -1,13 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+
+import { ClickOutsideDirective } from '../../../shared/directives/clickOutside.directive';
+import { DropdownDirective } from '../../../shared/directives/dropdown.directive';
 
 import { Recipe } from '../../models/recipe';
 import { RecipeService } from '../../services/recipe.service';
 
 @Component({
+  standalone: true,
+  imports: [CommonModule, ClickOutsideDirective, DropdownDirective],
   selector: 'recipe-detail',
-  templateUrl: './recipeDetail.component.html',
-  styleUrls: ['./recipeDetail.component.scss']
+  templateUrl: './recipe-detail.component.html',
+  styleUrls: ['./recipe-detail.component.scss']
 })
 export class RecipeDetail implements OnInit {
   recipe?: Recipe;
