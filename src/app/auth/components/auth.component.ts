@@ -1,5 +1,6 @@
 import { Component, ViewChild, OnDestroy } from '@angular/core';
-import { NgForm, NgModel, ValidationErrors } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { FormsModule, NgForm, NgModel, ValidationErrors } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
@@ -15,6 +16,8 @@ import {
 import { AuthService } from '../services/auth.service';
 
 @Component({
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   selector: 'app-auth',
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss']

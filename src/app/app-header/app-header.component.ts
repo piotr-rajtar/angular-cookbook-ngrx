@@ -2,10 +2,9 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 
-import { DropdownDirective } from '../shared/directives/dropdown.directive';
-
 import { AuthService } from '../auth/services/auth.service';
 import { AlertComponent } from '../shared/components/alert/alert.component';
+import { DropdownDirective } from '../shared/directives/dropdown.directive';
 import { PlaceholderDirective } from '../shared/directives/placeholder.directive';
 import { AlertType } from '../shared/models';
 import { DataStorageService } from '../shared/services/data-storage.service';
