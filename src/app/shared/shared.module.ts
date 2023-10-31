@@ -13,7 +13,6 @@ import { AlertComponent } from './components/alert/alert.component';
     AlertComponent,
     //DIRECTIVES
     ClickOutsideDirective,
-    DropdownDirective,
     PlaceholderDirective,
   ],
   imports: [
@@ -24,7 +23,6 @@ import { AlertComponent } from './components/alert/alert.component';
     AlertComponent,
     //DIRECTIVES
     ClickOutsideDirective,
-    DropdownDirective,
     PlaceholderDirective,
     //MODULES
     CommonModule,

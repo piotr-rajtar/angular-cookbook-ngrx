@@ -1,5 +1,8 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
+
+import { DropdownDirective } from '../shared/directives/dropdown.directive';
 
 import { AuthService } from '../auth/services/auth.service';
 import { AlertComponent } from '../shared/components/alert/alert.component';
@@ -8,9 +11,11 @@ import { AlertType } from '../shared/models';
 import { DataStorageService } from '../shared/services/data-storage.service';
 
 @Component({
+  standalone: true,
+  imports: [CommonModule, DropdownDirective],
   selector: 'app-header',
-  templateUrl: './appHeader.component.html',
-  styleUrls: ['./appHeader.component.scss'],
+  templateUrl: './app-header.component.html',
+  styleUrls: ['./app-header.component.scss'],
 })
 export class AppHeader implements OnDestroy, OnInit {
   isAuthenticated: boolean = false;
