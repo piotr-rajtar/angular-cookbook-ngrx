@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { RecipeService } from '../../services/recipe.service';
 
 @Component({
+  standalone: true,
   selector: 'app-recipe-no-selection',
   templateUrl: './recipe-no-selection.component.html',
   styleUrls: ['./recipe-no-selection.component.scss']

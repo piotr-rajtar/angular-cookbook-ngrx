@@ -9,10 +9,17 @@ import { DropdownDirective } from '../shared/directives/dropdown.directive';
 import { PlaceholderDirective } from '../shared/directives/placeholder.directive';
 import { AlertType } from '../shared/models';
 import { DataStorageService } from '../shared/services/data-storage.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, ClickOutsideDirective, DropdownDirective, PlaceholderDirective],
+  imports: [
+    CommonModule,
+    RouterModule,
+    ClickOutsideDirective,
+    DropdownDirective,
+    PlaceholderDirective,
+  ],
   selector: 'app-header',
   templateUrl: './app-header.component.html',
   styleUrls: ['./app-header.component.scss'],
