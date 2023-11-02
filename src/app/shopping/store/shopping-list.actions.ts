@@ -5,19 +5,17 @@ import { IngredientData } from '../models';
 
 // GROUPED ACTIONS
 
-export const shoppingListActions = createActionGroup(
-  {
-    source: 'ShoppingList',
-    events: {
-      'Add Ingredient': props<{ ingredient: Ingredient }>(),
-      'Add Ingredients': props<{ ingredients: Ingredient[] }>(),
-      'Delete Ingredient': emptyProps(),
-      'UpdateIngredient': props<{ ingredientDataToEdit: IngredientData }>(),
-      'Start Edit': props<{ ingredientId: string }>(),
-      'Stop Edit': emptyProps(),
-    },
+export const shoppingListActions = createActionGroup({
+  source: 'ShoppingList',
+  events: {
+    'Add Ingredient': props<{ ingredient: Ingredient }>(),
+    'Add Ingredients': props<{ ingredients: Ingredient[] }>(),
+    'Delete Ingredient': emptyProps(),
+    'UpdateIngredient': props<{ ingredientDataToEdit: IngredientData }>(),
+    'Start Edit': props<{ ingredientId: string }>(),
+    'Stop Edit': emptyProps(),
   },
-);
+});
 
 //SEPARATED ACTIONS
 

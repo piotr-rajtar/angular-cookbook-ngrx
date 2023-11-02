@@ -41,3 +41,10 @@ export interface StoredUserData {
   _token: string,
   _tokenExpirationDate: string,
 }
+
+export interface LoginData {
+  email: string;
+  userId: string;
+  token: string;
+  expirationDate: Date;
+}
