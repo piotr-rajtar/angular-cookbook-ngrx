@@ -2,7 +2,7 @@ import { createReducer, on } from '@ngrx/store';
 
 import { Ingredient } from '../models/ingredient';
 
-import * as ShoppingListActions from './shopping-list.actions';
+import { shoppingListActions } from './shopping-list.actions';
 
 export const SHOPPING_LIST_FEATURE_KEY = 'shoppingList';
 
@@ -18,19 +18,19 @@ const initialState: ShoppingListState = {
 
 export const shoppingListReducer = createReducer(
   initialState,
-  on(ShoppingListActions.addIngredient, (state, action) => {
+  on(shoppingListActions.addIngredient, (state, action) => {
     return {
       ...state,
       ingredients: [...state.ingredients, action.ingredient],
     }
   }),
-  on(ShoppingListActions.addIngredientsList, (state, action) => {
+  on(shoppingListActions.addIngredients, (state, action) => {
     return {
       ...state,
       ingredients: [...state.ingredients, ...action.ingredients],
     }
   }),
-  on(ShoppingListActions.deleteIngredient, state => {
+  on(shoppingListActions.deleteIngredient, state => {
     return {
       ...state,
       ingredients: state.ingredients.filter(
@@ -38,19 +38,19 @@ export const shoppingListReducer = createReducer(
       ),
     }
   }),
-  on(ShoppingListActions.startEdit, (state, action) => {
+  on(shoppingListActions.startEdit, (state, action) => {
     return {
       ...state,
       editedItemId: action.ingredientId,
     }
   }),
-  on(ShoppingListActions.stopEdit, state => {
+  on(shoppingListActions.stopEdit, state => {
     return {
       ...state,
       editedItemId: null,
     }
   }),
-  on(ShoppingListActions.updateIngredient, (state, action) => {
+  on(shoppingListActions.updateIngredient, (state, action) => {
     return {
       ...state,
       ingredients: state.ingredients.map(ingredient => {

@@ -5,7 +5,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../../store/types';
 
 import { Ingredient } from '../../models/ingredient';
-import * as ShoppingListActions from '../../store/shopping-list.actions';
+import { shoppingListActions } from '../../store/shopping-list.actions';
 
 @Component({
   standalone: true,
@@ -20,6 +20,6 @@ export class ShoppingList {
   constructor(private store: Store<AppState>) {}
 
   onIngredientClick(ingredientId: string): void {
-    this.store.dispatch(ShoppingListActions.startEdit({ ingredientId }));
+    this.store.dispatch(shoppingListActions.startEdit({ ingredientId }));
   }
 }

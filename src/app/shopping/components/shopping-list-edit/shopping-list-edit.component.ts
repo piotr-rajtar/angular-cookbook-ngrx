@@ -8,7 +8,7 @@ import { AppState } from '../../../store/types';
 
 import { Ingredient } from '../../models/ingredient';
 import { IngredientData } from '../../models';
-import * as ShoppingListActions from '../../store/shopping-list.actions';
+import { shoppingListActions } from '../../store/shopping-list.actions';
 import {
   selectShoppingListEditItemId,
   selectShoppingListIngredient,
@@ -51,7 +51,7 @@ export class ShoppingListEdit implements OnDestroy, OnInit {
 
   ngOnDestroy(): void {
     this.editShoppingListSubscription.unsubscribe();
-    this.store.dispatch(ShoppingListActions.stopEdit());
+    this.store.dispatch(shoppingListActions.stopEdit());
   }
 
   get addButtonTitle(): string {
@@ -82,7 +82,7 @@ export class ShoppingListEdit implements OnDestroy, OnInit {
       shoppingListForm.value.ingredientAmount,
     );
 
-    this.store.dispatch(ShoppingListActions.addIngredient({ ingredient }));
+    this.store.dispatch(shoppingListActions.addIngredient({ ingredient }));
 
     this.clearIngredient(shoppingListForm);
   }
@@ -93,14 +93,14 @@ export class ShoppingListEdit implements OnDestroy, OnInit {
       name: shoppingListForm.value.ingredientName,
     };
 
-    this.store.dispatch(ShoppingListActions.updateIngredient({ ingredientDataToEdit }));
+    this.store.dispatch(shoppingListActions.updateIngredient({ ingredientDataToEdit }));
 
     this.clearIngredient(shoppingListForm);
   }
 
   clearEditMode(): void {
     this.isInEditMode = false;
-    this.store.dispatch(ShoppingListActions.stopEdit());
+    this.store.dispatch(shoppingListActions.stopEdit());
   }
 
   clearIngredient(shoppingListForm: NgForm): void {
@@ -112,7 +112,7 @@ export class ShoppingListEdit implements OnDestroy, OnInit {
   }
 
   deleteIngredient(shoppingListForm: NgForm): void {
-    this.store.dispatch(ShoppingListActions.deleteIngredient());
+    this.store.dispatch(shoppingListActions.deleteIngredient());
 
     this.clearIngredient(shoppingListForm);
   }

@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 
 import { AppState } from '../../store/types';
 import { Ingredient } from '../../shopping/models/ingredient';
-import * as ShoppingListActions from '../../shopping/store/shopping-list.actions';
+import { shoppingListActions } from '../../shopping/store/shopping-list.actions';
 
 import { Recipe } from '../models/recipe';
 
@@ -58,6 +58,6 @@ export class RecipeService {
   }
 
   addIngredientsToShoppingList(ingredients: Ingredient[]) {
-    this.store.dispatch(ShoppingListActions.addIngredientsList({ ingredients }));
+    this.store.dispatch(shoppingListActions.addIngredients({ ingredients }));
   }
 }
