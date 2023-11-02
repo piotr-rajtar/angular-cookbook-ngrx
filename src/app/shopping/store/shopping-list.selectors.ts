@@ -1,6 +1,6 @@
 import { createSelector } from '@ngrx/store';
 
-import { AppState } from '../../shared/models';
+import { AppState } from '../../store/types';
 
 import { Ingredient } from '../models/ingredient';
 

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
 
-import { AppState } from '../../shared/models';
+import { AppState } from '../../store/types';
 import { Ingredient } from '../../shopping/models/ingredient';
 import * as ShoppingListActions from '../../shopping/store/shopping-list.actions';
 

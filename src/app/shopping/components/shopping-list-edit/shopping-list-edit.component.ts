@@ -4,7 +4,7 @@ import { FormsModule, NgForm, NgModel } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { of, Subscription, switchMap } from 'rxjs';
 
-import { AppState } from '../../../shared/models';
+import { AppState } from '../../../store/types';
 
 import { Ingredient } from '../../models/ingredient';
 import { IngredientData } from '../../models';

@@ -12,12 +12,14 @@ import {
   SHOPPING_LIST_FEATURE_KEY,
   shoppingListReducer,
 } from './app/shopping/store/shopping-list.reducer';
+import { AUTH_FEATURE_KEY, authReducer } from './app/auth/store/auth.reducer';
 
 bootstrapApplication(AppComponent, {
   providers: [
     importProvidersFrom(HttpClientModule),
     provideRouter(routes, withPreloading(PreloadAllModules)),
     provideStore(),
+    provideState({ name: AUTH_FEATURE_KEY, reducer: authReducer }),
     provideState({ name: SHOPPING_LIST_FEATURE_KEY, reducer: shoppingListReducer }),
     authInterceptorProvider,
 ],

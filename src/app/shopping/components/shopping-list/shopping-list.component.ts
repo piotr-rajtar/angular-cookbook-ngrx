@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
 
-import { AppState } from '../../../shared/models';
+import { AppState } from '../../../store/types';
 
 import { Ingredient } from '../../models/ingredient';
 import * as ShoppingListActions from '../../store/shopping-list.actions';

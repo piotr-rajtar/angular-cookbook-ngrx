@@ -7,8 +7,8 @@ import * as ShoppingListActions from './shopping-list.actions';
 export const SHOPPING_LIST_FEATURE_KEY = 'shoppingList';
 
 export interface ShoppingListState {
-  ingredients: Ingredient[],
-  editedItemId: string | null,
+  ingredients: Ingredient[];
+  editedItemId: string | null;
 }
 
 const initialState: ShoppingListState = {
