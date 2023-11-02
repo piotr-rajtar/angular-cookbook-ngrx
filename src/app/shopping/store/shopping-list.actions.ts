@@ -1,6 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 
 import { Ingredient } from '../models/ingredient';
+import { IngredientData } from '../models';
 
 export const addIngredient = createAction(
   '[ShoppingList] Add Ingredient',
@@ -14,10 +15,18 @@ export const addIngredientsList = createAction(
 
 export const deleteIngredient = createAction(
   '[ShoppingList] Delete Ingredient',
-  props<{ ingredientId: string }>()
 );
+
+export const startEdit = createAction(
+  '[ShoppingList] Start Edit',
+  props<{ ingredientId: string }>()
+)
+
+export const stopEdit = createAction(
+  '[ShoppingList] Stop Edit'
+)
 
 export const updateIngredient = createAction(
   '[ShoppingList] Update Ingredient',
-  props<{ updatedIngredient: Ingredient }>()
+  props<{ ingredientDataToEdit: IngredientData }>()
 );

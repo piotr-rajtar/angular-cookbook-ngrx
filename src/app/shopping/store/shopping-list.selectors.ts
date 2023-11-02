@@ -1,9 +1,28 @@
 import { createSelector } from '@ngrx/store';
+
+import { AppState } from '../../shared/models';
+
+import { Ingredient } from '../models/ingredient';
+
 import { ShoppingListState } from './shopping-list.reducer';
 
-export const selectIngredients = (state: ShoppingListState) => state.ingredients;
+export const selectShoppingList = (state: AppState) =>  {
+  return state.shoppingList;
+};
 
-export const selectIngredient = (ingredientId: string) => createSelector(
-  selectIngredients,
-  ingredients => ingredients.find(ingredient => ingredient.id === ingredientId)
+export const selectShoppingListIngredients = createSelector(
+  selectShoppingList,
+  (shoppingList: ShoppingListState) => shoppingList.ingredients
+);
+
+export const selectShoppingListIngredient = (ingredientId: string) => createSelector(
+  selectShoppingListIngredients,
+  (ingredients: Ingredient[]) => ingredients.find(
+    ingredient => ingredient.id === ingredientId
+  )
+);
+
+export const selectShoppingListEditItemId = createSelector(
+  selectShoppingList,
+  (shoppingList: ShoppingListState) => shoppingList.editedItemId
 );

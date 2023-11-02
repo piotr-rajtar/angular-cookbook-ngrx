@@ -1,9 +1,12 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+
+import { AppState } from '../../../shared/models';
 
 import { Ingredient } from '../../models/ingredient';
-import { ShoppingService } from '../../services/shopping.service';
+import { selectShoppingListIngredients } from '../../store/shopping-list.selectors';
 
 import { ShoppingList } from '../shopping-list/shopping-list.component';
 import { ShoppingListEdit } from '../shopping-list-edit/shopping-list-edit.component';
@@ -15,25 +18,13 @@ import { ShoppingListEdit } from '../shopping-list-edit/shopping-list-edit.compo
   templateUrl: './shopping-list-container.component.html',
   styleUrls: ['./shopping-list-container.component.scss']
 })
-export class ShoppingListContainer implements OnDestroy, OnInit {
-  ingredients: Ingredient[] = [];
-  updateShoppingListSubscription!: Subscription;
+export class ShoppingListContainer implements OnInit {
+  ingredients!: Observable<Ingredient[]>;
 
-  constructor(private shoppingService: ShoppingService) {
-    this.updateShoppingListSubscription = this.shoppingService.updateShoppingList.subscribe(() => {
-      this.getIngredients();
-    })
-  }
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.getIngredients();
-  }
-
-  ngOnDestroy(): void {
-    this.updateShoppingListSubscription.unsubscribe();
-  }
-
-  getIngredients(): void {
-    this.ingredients = this.shoppingService.getIngredients();
+    //TO ZWRACA OBSERVABLA, MOZNA TO OGRAĆ PIPEM ASYNC LUB SUBSCRIBEM
+    this.ingredients = this.store.select(selectShoppingListIngredients);
   }
 }

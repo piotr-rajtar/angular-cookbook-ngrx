@@ -8,10 +8,12 @@ export const SHOPPING_LIST_FEATURE_KEY = 'shoppingList';
 
 export interface ShoppingListState {
   ingredients: Ingredient[],
+  editedItemId: string | null,
 }
 
 const initialState: ShoppingListState = {
   ingredients: [],
+  editedItemId: null,
 };
 
 export const shoppingListReducer = createReducer(
@@ -28,26 +30,38 @@ export const shoppingListReducer = createReducer(
       ingredients: [...state.ingredients, ...action.ingredients],
     }
   }),
-  on(ShoppingListActions.deleteIngredient, (state, action) => {
+  on(ShoppingListActions.deleteIngredient, state => {
     return {
       ...state,
       ingredients: state.ingredients.filter(
-        ingredient => ingredient.id !== action.ingredientId
+        ingredient => ingredient.id !== state.editedItemId
       ),
+    }
+  }),
+  on(ShoppingListActions.startEdit, (state, action) => {
+    return {
+      ...state,
+      editedItemId: action.ingredientId,
+    }
+  }),
+  on(ShoppingListActions.stopEdit, state => {
+    return {
+      ...state,
+      editedItemId: null,
     }
   }),
   on(ShoppingListActions.updateIngredient, (state, action) => {
     return {
       ...state,
       ingredients: state.ingredients.map(ingredient => {
-        if(ingredient.id !== action.updatedIngredient.id) {
+        if(ingredient.id !== state.editedItemId) {
           return ingredient;
         }
 
         return {
           ...ingredient,
-          name: action.updatedIngredient.name,
-          amount: action.updatedIngredient.amount,
+          name: action.ingredientDataToEdit.name,
+          amount: action.ingredientDataToEdit.amount,
         };
       }),
     };

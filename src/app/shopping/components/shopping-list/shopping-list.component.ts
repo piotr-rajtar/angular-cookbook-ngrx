@@ -1,8 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Store } from '@ngrx/store';
+
+import { AppState } from '../../../shared/models';
 
 import { Ingredient } from '../../models/ingredient';
-import { ShoppingService } from '../../services/shopping.service';
+import * as ShoppingListActions from '../../store/shopping-list.actions';
 
 @Component({
   standalone: true,
@@ -14,9 +17,9 @@ import { ShoppingService } from '../../services/shopping.service';
 export class ShoppingList {
   @Input({ required: true }) ingredients!: Ingredient[];
 
-  constructor(private shoppingService: ShoppingService) {}
+  constructor(private store: Store<AppState>) {}
 
   onIngredientClick(ingredientId: string): void {
-    this.shoppingService.editShoppingList.next(ingredientId);
+    this.store.dispatch(ShoppingListActions.startEdit({ ingredientId }));
   }
 }

@@ -2,7 +2,10 @@
   <div class="col-12 col-md-10">
     <shopping-list-edit />
     <hr />
-    <shopping-list *ngIf="ingredients.length; else infoText" [ingredients]="ingredients" />
+    <shopping-list
+      *ngIf="(ingredients | async)!.length; else infoText"
+      [ingredients]="(ingredients | async)!"
+    />
     <ng-template #infoText>
       <p class="paragraph-mobile">No ingredients on the list</p>
     </ng-template>
