@@ -6,7 +6,7 @@ import { Ingredient } from '../models/ingredient';
 
 import { ShoppingListState } from './shopping-list.reducer';
 
-export const selectShoppingList = (state: AppState) =>  {
+export const selectShoppingList = (state: AppState) => {
   return state.shoppingList;
 };
 

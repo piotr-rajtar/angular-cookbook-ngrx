@@ -1,15 +1,18 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 
 import { AuthService } from '../auth/services/auth.service';
+import { selectAuthUser } from '../auth/store/auth.selectors';
 import { AlertComponent } from '../shared/components/alert/alert.component';
 import { ClickOutsideDirective } from '../shared/directives/clickOutside.directive';
 import { DropdownDirective } from '../shared/directives/dropdown.directive';
 import { PlaceholderDirective } from '../shared/directives/placeholder.directive';
 import { AlertType } from '../shared/models';
 import { DataStorageService } from '../shared/services/data-storage.service';
-import { RouterModule } from '@angular/router';
+import { AppState } from '../store/types';
 
 @Component({
   standalone: true,
@@ -32,12 +35,13 @@ export class AppHeader implements OnDestroy, OnInit {
   constructor(
     private authService: AuthService,
     private dataStorageService: DataStorageService,
+    private store: Store<AppState>,
   ) { }
 
   @ViewChild(PlaceholderDirective) alertHost!: PlaceholderDirective;
 
   ngOnInit(): void {
-    this.userSubscription = this.authService.user.subscribe(user => {
+    this.userSubscription = this.store.select(selectAuthUser).subscribe(user => {
       this.isAuthenticated = !!user;
     });
   }

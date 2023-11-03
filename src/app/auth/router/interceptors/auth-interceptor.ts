@@ -6,19 +6,22 @@ import {
   HttpParams,
   HttpRequest,
 } from '@angular/common/http';
+import { Store } from '@ngrx/store';
 import { Observable, exhaustMap, take } from 'rxjs';
 
-import { AuthService } from '../../services/auth.service';
+import { AppState } from '../../../store/types';
+
+import { selectAuthUser } from '../../store/auth.selectors';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor(private authService: AuthService) { }
+  constructor(private store: Store<AppState>) { }
 
   intercept(
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    return this.authService.user.pipe(
+    return this.store.select(selectAuthUser).pipe(
       take(1),
       //exhaustMap, czeka jak skończy się userObservable, następnie zastępuje go w łańuchu observabli
       //dlatego dalej zwracamy Observabla z HttpEvent

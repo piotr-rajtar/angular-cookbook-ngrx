@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, catchError, tap, throwError } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { Observable, catchError, tap, throwError } from 'rxjs';
 
 import { environment } from '../../../environments/environment';
+
+import { AppState } from '../../store/types';
 
 import { User } from '../models/user';
 import {
@@ -15,17 +18,18 @@ import {
   SignUpResponseData,
   StoredUserData,
 } from '../models';
+import { authActions } from '../store/auth.actions';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  user = new BehaviorSubject<User | null>(null);
   private tokenExpirationTimer!: any;
 
   constructor(
     private httpClient: HttpClient,
     private router: Router,
+    private store: Store<AppState>,
   ) { }
 
   signIn(authFormData: AuthFormData): Observable<SignInResponseData> {
@@ -80,7 +84,14 @@ export class AuthService {
       expirationDate
     );
 
-    this.user.next(user);
+    this.store.dispatch(authActions.login({
+      loginData: {
+        email,
+        userId,
+        token,
+        expirationDate,
+      },
+    }));
 
     this.autoLogout(expiresIn * 1000);
 
@@ -125,7 +136,14 @@ export class AuthService {
     )
 
     if(loadedUser.token) {
-      this.user.next(loadedUser);
+      this.store.dispatch(authActions.login({
+        loginData: {
+          email: parsedUserData.email,
+          userId: parsedUserData.id,
+          token: parsedUserData._token,
+          expirationDate: new Date(parsedUserData._tokenExpirationDate),
+        },
+      }));
       const tokenExpirationTimeInMs: number =
         new Date(parsedUserData._tokenExpirationDate).getTime() - new Date().getTime();
       this.autoLogout(tokenExpirationTimeInMs);
@@ -139,7 +157,7 @@ export class AuthService {
   }
 
   logout(): void {
-    this.user.next(null);
+    this.store.dispatch(authActions.logout());
     this.router.navigate(['/auth']);
     localStorage.removeItem('userData');
 

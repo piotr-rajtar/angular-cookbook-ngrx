@@ -7,5 +7,5 @@ export const authActions = createActionGroup({
   events: {
     'Login': props<{ loginData: LoginData }>(),
     'Logout': emptyProps(),
-  }
+  },
 })
