@@ -1,8 +1,9 @@
-import { importProvidersFrom } from '@angular/core';
+import { importProvidersFrom, isDevMode } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { PreloadAllModules, provideRouter, withPreloading } from '@angular/router';
 import { provideState, provideStore } from '@ngrx/store';
+import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { provideEffects } from '@ngrx/effects';
 
 import { authInterceptorProvider } from './app/auth/router/interceptors';
@@ -24,6 +25,7 @@ bootstrapApplication(AppComponent, {
     provideState({ name: AUTH_FEATURE_KEY, reducer: authReducer }),
     provideState({ name: SHOPPING_LIST_FEATURE_KEY, reducer: shoppingListReducer }),
     provideEffects(authEffects),
+    provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
     authInterceptorProvider,
 ],
 }).catch(err => console.error(err));
