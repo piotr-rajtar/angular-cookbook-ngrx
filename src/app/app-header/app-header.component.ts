@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 
 import { AuthService } from '../auth/services/auth.service';
+import { authActions } from '../auth/store/auth.actions';
 import { selectAuthUser } from '../auth/store/auth.selectors';
 import { AlertComponent } from '../shared/components/alert/alert.component';
 import { ClickOutsideDirective } from '../shared/directives/clickOutside.directive';
@@ -33,7 +34,6 @@ export class AppHeader implements OnDestroy, OnInit {
   userSubscription!: Subscription;
 
   constructor(
-    private authService: AuthService,
     private dataStorageService: DataStorageService,
     private store: Store<AppState>,
   ) { }
@@ -103,6 +103,6 @@ export class AppHeader implements OnDestroy, OnInit {
   }
 
   logout(): void {
-    this.authService.logout();
+    this.store.dispatch(authActions.logout());
   }
 }

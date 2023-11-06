@@ -1,11 +1,17 @@
-import { createActionGroup, emptyProps, props } from '@ngrx/store';
+import { createActionGroup, createAction, emptyProps, props } from '@ngrx/store';
 
-import { LoginData } from '../models';
+import { AuthFormData, LoginData } from '../models';
 
 export const authActions = createActionGroup({
   source: 'Auth',
   events: {
-    'Login': props<{ loginData: LoginData }>(),
+    'AuthenticationSuccess': props<{ loginData: LoginData }>(),
+    'AuthenticationError': props<{ errorMessage: string }>(),
+    'AutoLogin': emptyProps(),
+    'ClearError': emptyProps(),
+    'SignIn': props<{ authFormData: AuthFormData }>(),
+    'SignUp': props<{ authFormData: AuthFormData }>(),
     'Logout': emptyProps(),
   },
-})
+});
+

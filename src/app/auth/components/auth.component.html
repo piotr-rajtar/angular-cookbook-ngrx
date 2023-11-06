@@ -1,8 +1,12 @@
 <div class="row">
   <div class="col-12 col-md-6 offset-md-3">
 
-    <!-- <app-alert *ngIf="error" [message]="error" (close)="closeErrorAlert()" /> -->
-    <ng-template appPlaceholder />
+    <app-alert
+      *ngIf="error"
+      [type]="AlertType.DANGER"
+      [message]="error"
+      (close)="closeErrorAlert()"
+    />
     <form
       *ngIf="!isLoading; else spinner"
       class="form"

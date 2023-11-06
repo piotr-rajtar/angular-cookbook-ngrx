@@ -3,16 +3,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { PreloadAllModules, provideRouter, withPreloading } from '@angular/router';
 import { provideState, provideStore } from '@ngrx/store';
+import { provideEffects } from '@ngrx/effects';
 
 import { authInterceptorProvider } from './app/auth/router/interceptors';
-import { routes } from './app/router/app.routes';
-import { AppComponent } from './app/app.component';
-
+import { AUTH_FEATURE_KEY, authReducer } from './app/auth/store/auth.reducer';
+import * as authEffects from './app/auth/store/auth.effects';
 import {
   SHOPPING_LIST_FEATURE_KEY,
   shoppingListReducer,
 } from './app/shopping/store/shopping-list.reducer';
-import { AUTH_FEATURE_KEY, authReducer } from './app/auth/store/auth.reducer';
+
+import { routes } from './app/router/app.routes';
+import { AppComponent } from './app/app.component';
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -21,6 +23,7 @@ bootstrapApplication(AppComponent, {
     provideStore(),
     provideState({ name: AUTH_FEATURE_KEY, reducer: authReducer }),
     provideState({ name: SHOPPING_LIST_FEATURE_KEY, reducer: shoppingListReducer }),
+    provideEffects(authEffects),
     authInterceptorProvider,
 ],
 }).catch(err => console.error(err));

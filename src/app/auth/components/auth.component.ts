@@ -1,39 +1,43 @@
-import { Component, ViewChild, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm, NgModel, ValidationErrors } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 
-import { PlaceholderDirective } from '../../shared/directives/placeholder.directive';
-import { AlertType } from '../../shared/models';
 import { AlertComponent } from '../../shared/components/alert/alert.component';
+import { AlertType } from '../../shared/models';
+import { AppState } from '../../store/types';
 
-import {
-  AuthFormData,
-  SignInResponseData,
-  SignUpResponseData,
-} from '../models';
-import { AuthService } from '../services/auth.service';
+import { AuthFormData } from '../models';
+import { authActions } from '../store/auth.actions';
+import { AuthState } from '../store/auth.reducer';
+import { selectAuthState } from '../store/auth.selectors';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, FormsModule, PlaceholderDirective],
+  imports: [CommonModule, FormsModule, AlertComponent],
   selector: 'app-auth',
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss']
 })
-export class AuthComponent implements OnDestroy {
-  closeAlertSubscription!: Subscription;
+export class AuthComponent implements OnDestroy, OnInit {
   isAuthenticated: boolean = false;
   isLoading: boolean = false;
   error: string | null = null;
+  storeSubscription!: Subscription;
 
-  @ViewChild(PlaceholderDirective) alertHost!: PlaceholderDirective;
+  AlertType = AlertType;
 
-  constructor(
-    private authService: AuthService,
-    private router: Router,
-  ) { }
+  constructor(private store: Store<AppState>) { }
+
+  ngOnInit(): void {
+    this.storeSubscription = this.store
+      .select(selectAuthState)
+      .subscribe((authState: AuthState) => {
+        this.isLoading = authState.isLoading;
+        this.error = authState.authError;
+      });
+  }
 
   get authButtonTitle(): string {
     return this.isAuthenticated
@@ -76,78 +80,20 @@ export class AuthComponent implements OnDestroy {
 
     const authFormData: AuthFormData = authForm.value;
 
-    this.isLoading = true;
-
     if(this.isAuthenticated) {
-      this.signIn(authFormData);
+      this.store.dispatch(authActions.signIn({ authFormData }));
     } else {
-      this.signUp(authFormData);
+      this.store.dispatch(authActions.signUp({ authFormData }));
     }
 
     authForm.reset();
   }
 
-  signIn(authFormData: AuthFormData) {
-    this.authService.signIn(authFormData).subscribe({
-      next: (_authResponseData: SignInResponseData) => {
-        this.isLoading = false;
-        this.router.navigate(['/recipes']);
-      },
-      error: (errorResponce: Error) => {
-        this.error = errorResponce.message;
-        this.isLoading = false;
-        this.showErrorAlert(errorResponce.message);
-      }
-    });
-  }
-
-  signUp(authFormData: AuthFormData) {
-    this.authService.signUp(authFormData).subscribe({
-      next: (_authResponseData: SignUpResponseData) => {
-        this.isLoading = false;
-        this.router.navigate(['/recipes']);
-      },
-      error: (errorResponce: Error) => {
-        this.error = errorResponce.message;
-        this.isLoading = false;
-        this.showErrorAlert(errorResponce.message);
-      }
-    });
-  }
-
-  //FRAGMENT KODU DO NG-IFA
-  // closeErrorAlert(): void {
-  //   this.error = null;
-  // }
-
-  //ZOSTAWIONE DO CELÓW DEMONSTRACYJNYCH
-  //PREFEROWANE JEST ZAWSZE UŻYWANIE NGIFA, KTÓRY ROBI TO WSZYSTKO ZA NAS
-
-  private showErrorAlert(errorMessage: string): void {
-    //WYBIERAMY KONTENER, KTÓRY POSIADA DYREKTYWE PlaceholderDirective GDZIE BĘDZIE WYŚWIETLANY NASZ ALERT
-    const viewContainerRef = this.alertHost.viewContainerRef;
-
-    //CZYŚCIMY TEN KONTENER Z JAKICHŚ INNYCH KOMPONENTÓW, KTÓRE MOGŁY BYĆ TAM POPRZEDNIO WRZUCONE
-    viewContainerRef.clear();
-
-    //TWORZYMY NOWĄ INSTANCJĘ KOMPONENTU ALERTU
-    const componentRef = viewContainerRef.createComponent<AlertComponent>(AlertComponent);
-
-    //DODAJEMY PROPY
-    componentRef.instance.message = errorMessage;
-    componentRef.instance.type = AlertType.DANGER;
-
-    //SUBSKRYBUJEMY TYLKO NA SUBJECT LUB BEHAVIOUR SUBJECT LUB OBSERVABLE
-    //TO JEDYNY PRZYPADEK KIEDY MOŻNA SUBSKRYBOWAĆ SIĘ NA EVENT
-    this.closeAlertSubscription = componentRef.instance.close.subscribe(() => {
-      this.closeAlertSubscription.unsubscribe();
-      viewContainerRef.clear();
-    });
+  closeErrorAlert(): void {
+    this.store.dispatch(authActions.clearError());
   }
 
   ngOnDestroy(): void {
-    if(this.closeAlertSubscription) {
-      this.closeAlertSubscription.unsubscribe();
-    }
+    this.storeSubscription.unsubscribe;
   }
 }
