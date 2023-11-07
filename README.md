@@ -7,7 +7,7 @@ Simple cookbook application.
 * [Setup](#setup)
 
 ## General info
-This is simple cookbook application, with core angular feature implementations.
+This is simple cookbook application, with core angular feature implementations with NgRx library usage.
 
 After running the app, not authenticatd user can take use of shopping list, where user can:
 * add new ingredients to the shopping list
@@ -32,7 +32,9 @@ Application is also available on mobile devices.
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.2.
 
 Library versions:
-* Angular - version 16.2
+* Angular - version 16.2.0
+* ngrx/effects: 16.3.0,
+* ngrx/store: 16.3.0,
 * bootstrap - version 5.3.2
 * rxjs - version 7.8.0
 * uuid - version 9.0.1
