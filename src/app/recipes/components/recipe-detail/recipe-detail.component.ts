@@ -54,7 +54,9 @@ export class RecipeDetail implements OnDestroy, OnInit {
   }
 
   addToShoppingList(): void {
-    this.store.dispatch(shoppingListActions.addIngredients({ ingredients: (this.recipe as Recipe).ingredients }));
+    this.store.dispatch(shoppingListActions.addIngredients(
+      { ingredients: (this.recipe as Recipe).ingredients }
+    ));
     this.closeDropdown();
   }
 

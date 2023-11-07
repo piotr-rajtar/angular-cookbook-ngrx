@@ -1,4 +1,4 @@
-import { createActionGroup, createAction, emptyProps, props } from '@ngrx/store';
+import { createActionGroup, emptyProps, props } from '@ngrx/store';
 
 import { AuthFormData, LoginData } from '../models';
 

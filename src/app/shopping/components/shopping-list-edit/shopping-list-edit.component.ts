@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm, NgModel } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { of, Subscription, switchMap } from 'rxjs';
+import { EMPTY, Subscription, switchMap } from 'rxjs';
 
 import { AppState } from '../../../store/types';
 
@@ -37,7 +37,7 @@ export class ShoppingListEdit implements OnDestroy, OnInit {
             this.isInEditMode = true;
             return this.store.select(selectShoppingListIngredient(editItemId))
           }
-          return of();
+          return EMPTY;
         })
       )
       .subscribe(ingredient => {

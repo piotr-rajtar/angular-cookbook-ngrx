@@ -10,10 +10,6 @@ export const routes: Routes = [
     canActivate: [authGuard],
     loadComponent: () => import('../components/recipe-container/recipe-container.component')
       .then(m => m.RecipeContainer),
-    //WYNIOSŁEM TO WYŻEJ
-    //PRZY KLIKNIĘCIU W RECIPE BOOK, ŁADOWAŁA SIĘ STRONA GŁÓWNA BEZ PRZEPISÓW
-    //MIMO, ŻE ZOSTAŁY ZFETCHOWANE PRZY WEJŚCIU NA LINK EDIT, CZY SAMYCH SZCZEGÓŁÓW
-    //ZMIANA DLA POPRAWY UX
     resolve: {
       recipeResolver,
     },
@@ -32,17 +28,11 @@ export const routes: Routes = [
         path: ':id',
         loadComponent: () => import('../components/recipe-detail/recipe-detail.component')
           .then(m => m.RecipeDetail),
-        // resolve: {
-        //   recipeResolver,
-        // },
       },
       {
         path: ':id/edit',
         loadComponent: () => import('../components/recipe-edit/recipe-edit.component')
           .then(m => m.RecipeEditComponent),
-        // resolve: {
-        //   recipeResolver,
-        // },
       },
     ]
   },
