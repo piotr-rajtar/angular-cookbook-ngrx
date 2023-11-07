@@ -43,7 +43,8 @@ const handleAuthenticationSuccess = (responseData: SignInResponseData | SignUpRe
       userId: responseData.localId,
       token: responseData.idToken,
       expirationDate,
-    }
+    },
+    redirect: true,
   });
 }
 
@@ -155,6 +156,7 @@ export const autoLogin = createEffect(
               token: parsedUserData._token,
               expirationDate: new Date(parsedUserData._tokenExpirationDate),
             },
+            redirect: false,
           }));
         }
         return EMPTY;
@@ -168,8 +170,10 @@ export const authenticationRedirect = createEffect(
   (actions$ = inject<Actions<Action>>(Actions), router = inject(Router)) => {
     return actions$.pipe(
       ofType(authActions.authenticationSuccess),
-      tap(() => {
-        router.navigate(['/']);
+      tap((authenticationSuccessAction) => {
+        if(authenticationSuccessAction.redirect) {
+          router.navigate(['/']);
+        }
       }),
     );
   },

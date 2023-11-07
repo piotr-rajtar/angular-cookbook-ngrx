@@ -1,18 +1,17 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 
-import { AuthService } from '../auth/services/auth.service';
 import { authActions } from '../auth/store/auth.actions';
 import { selectAuthUser } from '../auth/store/auth.selectors';
+import { recipesActions } from '../recipes/store/recipes.actions';
+import { selectRecipesState } from '../recipes/store/recipes.selectors';
 import { AlertComponent } from '../shared/components/alert/alert.component';
 import { ClickOutsideDirective } from '../shared/directives/clickOutside.directive';
 import { DropdownDirective } from '../shared/directives/dropdown.directive';
-import { PlaceholderDirective } from '../shared/directives/placeholder.directive';
 import { AlertType } from '../shared/models';
-import { DataStorageService } from '../shared/services/data-storage.service';
 import { AppState } from '../store/types';
 
 @Component({
@@ -20,9 +19,9 @@ import { AppState } from '../store/types';
   imports: [
     CommonModule,
     RouterModule,
+    AlertComponent,
     ClickOutsideDirective,
     DropdownDirective,
-    PlaceholderDirective,
   ],
   selector: 'app-header',
   templateUrl: './app-header.component.html',
@@ -30,28 +29,30 @@ import { AppState } from '../store/types';
 })
 export class AppHeader implements OnDestroy, OnInit {
   isAuthenticated: boolean = false;
-  closeAlertSubscription!: Subscription;
-  userSubscription!: Subscription;
+  authStateSubscription!: Subscription;
+  recipeStateSubscription!: Subscription;
+  dbErrorMessage: string | null = null;
+  dbSuccessMessage: string | null = null;
 
-  constructor(
-    private dataStorageService: DataStorageService,
-    private store: Store<AppState>,
-  ) { }
+  AlertType = AlertType;
 
-  @ViewChild(PlaceholderDirective) alertHost!: PlaceholderDirective;
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
-    this.userSubscription = this.store.select(selectAuthUser).subscribe(user => {
+    this.authStateSubscription = this.store.select(selectAuthUser).subscribe(user => {
       this.isAuthenticated = !!user;
     });
+
+    this.recipeStateSubscription = this.store.select(selectRecipesState)
+      .subscribe(recipesState => {
+        this.dbErrorMessage = recipesState.dbErrorMessage;
+        this.dbSuccessMessage = recipesState.dbSuccessMessage;
+      });
   }
 
   ngOnDestroy(): void {
-    this.userSubscription.unsubscribe();
-
-    if(this.closeAlertSubscription) {
-      this.closeAlertSubscription.unsubscribe();
-    }
+    this.authStateSubscription.unsubscribe();
+    this.recipeStateSubscription.unsubscribe();
   }
 
   isMenuDropdownOpen = false;
@@ -74,32 +75,20 @@ export class AppHeader implements OnDestroy, OnInit {
     this.isOptionDropdownOpen = !this.isOptionDropdownOpen;
   }
 
+  closeErrorAlert(): void {
+    this.store.dispatch(recipesActions.clearDbErrorMessage());
+  }
+
+  closeSuccessAlert(): void {
+    this.store.dispatch(recipesActions.clearDbSuccessMessage());
+  }
+
   fetchData(): void {
-    this.dataStorageService.fetchRecipes().subscribe(() => {
-      const message = 'Data fetched successfully';
-      this.showSuccessAlert(message);
-    });
+    this.store.dispatch(recipesActions.fetchRecipes());
   }
 
   saveData(): void {
-    this.dataStorageService.storeRecipes().subscribe(() => {
-      const message = 'Data saved successfully';
-      this.showSuccessAlert(message);
-    });
-  }
-
-  showSuccessAlert(message: string): void {
-    const viewContainerRef = this.alertHost.viewContainerRef;
-    viewContainerRef.clear();
-
-    const componentRef = viewContainerRef.createComponent<AlertComponent>(AlertComponent);
-    componentRef.instance.message = message;
-    componentRef.instance.type = AlertType.SUCCESS;
-
-    this.closeAlertSubscription = componentRef.instance.close.subscribe(() => {
-      this.closeAlertSubscription.unsubscribe();
-      viewContainerRef.clear();
-    })
+    this.store.dispatch(recipesActions.storeRecipes());
   }
 
   logout(): void {

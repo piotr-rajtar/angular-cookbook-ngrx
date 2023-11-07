@@ -1,12 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { map, Subscription, switchMap } from 'rxjs';
 
 import { ClickOutsideDirective } from '../../../shared/directives/clickOutside.directive';
 import { DropdownDirective } from '../../../shared/directives/dropdown.directive';
+import { shoppingListActions } from '../../../shopping/store/shopping-list.actions';
+import { AppState } from '../../../store/types';
 
 import { Recipe } from '../../models/recipe';
-import { RecipeService } from '../../services/recipe.service';
+import { selectRecipe } from '../../store/recipes.selectors';
+import { recipesActions } from '../../store/recipes.actions';
 
 @Component({
   standalone: true,
@@ -15,19 +20,27 @@ import { RecipeService } from '../../services/recipe.service';
   templateUrl: './recipe-detail.component.html',
   styleUrls: ['./recipe-detail.component.scss']
 })
-export class RecipeDetail implements OnInit {
+export class RecipeDetail implements OnDestroy, OnInit {
   recipe?: Recipe;
+  storeSubscription!: Subscription;
 
   constructor(
-    private recipeService: RecipeService,
     private route: ActivatedRoute,
     private router: Router,
+    private store: Store<AppState>,
   ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe((params: Params) => {
-      this.recipe = this.recipeService.getRecipe(params['id']);
-    });
+    this.storeSubscription = this.route.params
+      .pipe(
+        map(params => params['id']),
+        switchMap((recipeId: string) => {
+          return this.store.select(selectRecipe(recipeId));
+        })
+      )
+      .subscribe(recipe => {
+        this.recipe = recipe;
+      })
   }
 
   isDropdownOpen = false;
@@ -41,7 +54,7 @@ export class RecipeDetail implements OnInit {
   }
 
   addToShoppingList(): void {
-    this.recipeService.addIngredientsToShoppingList((this.recipe as Recipe).ingredients);
+    this.store.dispatch(shoppingListActions.addIngredients({ ingredients: (this.recipe as Recipe).ingredients }));
     this.closeDropdown();
   }
 
@@ -50,8 +63,14 @@ export class RecipeDetail implements OnInit {
   }
 
   deleteRecipe(): void {
-    this.recipeService.deleteRecipe(this.recipe?.id as string);
+    this.store.dispatch(recipesActions.deleteRecipe(
+      { recipeId: this.recipe?.id as string }
+    ));
 
     this.router.navigate(['/recipes']);
+  }
+
+  ngOnDestroy(): void {
+    this.storeSubscription.unsubscribe();
   }
 }

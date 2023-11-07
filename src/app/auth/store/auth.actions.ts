@@ -5,7 +5,10 @@ import { AuthFormData, LoginData } from '../models';
 export const authActions = createActionGroup({
   source: 'Auth',
   events: {
-    'AuthenticationSuccess': props<{ loginData: LoginData }>(),
+    'AuthenticationSuccess': props<{
+      loginData: LoginData,
+      redirect: boolean,
+    }>(),
     'AuthenticationError': props<{ errorMessage: string }>(),
     'AutoLogin': emptyProps(),
     'ClearError': emptyProps(),

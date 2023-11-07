@@ -1,4 +1,5 @@
 import { AuthState } from '../auth/store/auth.reducer';
+import { RecipesState } from '../recipes/store/recipes.reducer';
 import { ShoppingListState } from '../shopping/store/shopping-list.reducer';
 
 //TU JAKO KLUCZ MUSI BYĆ NAZWA PODANA W NAME W PROVIDE STATE W PLIKU MAIN.TS
@@ -6,5 +7,6 @@ import { ShoppingListState } from '../shopping/store/shopping-list.reducer';
 //ZADEKLAROWANYM JAKO REDUCER W PLIKU MAIN.TS DLA ZADANEGO KLUCZA
 export interface AppState {
   auth: AuthState;
+  recipes: RecipesState;
   shoppingList: ShoppingListState;
 }

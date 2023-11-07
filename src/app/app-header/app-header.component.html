@@ -123,4 +123,15 @@
     </div>
   </div>
 </nav>
-<ng-template appPlaceholder  />
+<app-alert
+  *ngIf="dbErrorMessage"
+  [type]="AlertType.DANGER"
+  [message]="dbErrorMessage"
+  (close)="closeErrorAlert()"
+/>
+<app-alert
+  *ngIf="dbSuccessMessage"
+  [type]="AlertType.SUCCESS"
+  [message]="dbSuccessMessage"
+  (close)="closeSuccessAlert()"
+/>
