@@ -7,7 +7,7 @@ Simple cookbook application.
 * [Setup](#setup)
 
 ## General info
-This is simple cookbook application, with core angular feature implementations with NgRx library usage.
+This is simple cookbook application, with core angular feature implementations with NgRx library usage. Created with standalone components.
 
 After running the app, not authenticatd user can take use of shopping list, where user can:
 * add new ingredients to the shopping list
